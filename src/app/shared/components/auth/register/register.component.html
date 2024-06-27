@@ -1,0 +1,148 @@
+<div class="grid p-fluid">
+  <div class="col-12 md:col-6">
+    <p-card header="Sign Up" subheader="Create a new account" styleClass="card">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="p-fluid">
+          <div class="grid">
+            <div class="col-12 md:col-6">
+              <div class="field">
+                <label for="username">First Name</label>
+                <input
+                  id="firstName"
+                  type="text"
+                  pInputText
+                  formControlName="firstName"
+                />
+                <div
+                  *ngIf="
+                    signUpForm.controls['firstName'].invalid &&
+                    (signUpForm.controls['firstName'].dirty ||
+                      signUpForm.controls['firstName'].touched)
+                  "
+                  class="p-error"
+                >
+                  first name is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 md:col-6">
+              <div class="field">
+                <label for="username">Last Name</label>
+                <input
+                  id="lastName"
+                  type="text"
+                  pInputText
+                  formControlName="lastName"
+                />
+                <div
+                  *ngIf="
+                    signUpForm.controls['lastName'].invalid &&
+                    (signUpForm.controls['lastName'].dirty ||
+                      signUpForm.controls['lastName'].touched)
+                  "
+                  class="p-error"
+                >
+                  last name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+            
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" pInputText formControlName="email" />
+              <div
+              *ngIf="
+                signUpForm.controls['email'].invalid &&
+                (signUpForm.controls['email'].dirty ||
+                  signUpForm.controls['email'].touched)
+                  "
+              class="p-error"
+              >
+              Enter a valid email.
+            </div>
+          </div>
+
+          <h5>Are You ?</h5>
+          <div class="grid">
+            <div class="col-12 md:col-4">
+              <div class="field-radiobutton">
+                <p-radioButton
+                formControlName="role"
+                name="role"
+                value="player"
+                  inputId="player"
+                ></p-radioButton>
+                <label for="player">player</label>
+              </div>
+            </div>
+            <div class="col-12 md:col-4">
+              <div class="field-radiobutton">
+                <p-radioButton
+                formControlName="role"
+                name="role"
+                value="owner"
+                inputId="owner"
+                ></p-radioButton>
+                <label for="owner">Owner</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <p-password
+              id="password"
+              formControlName="password"
+              [toggleMask]="true"
+              ></p-password>
+              <div
+              *ngIf="
+                signUpForm.controls['password'].invalid &&
+                (signUpForm.controls['password'].dirty ||
+                  signUpForm.controls['password'].touched)
+                  "
+              class="p-error"
+              >
+              Password must be at least 6 characters long.
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="confirmPassword">Confirm Password</label>
+            <p-password
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            [toggleMask]="true"
+            ></p-password>
+            <div
+              *ngIf="
+                signUpForm.controls['confirmPassword'].invalid &&
+                (signUpForm.controls['confirmPassword'].dirty ||
+                  signUpForm.controls['confirmPassword'].touched)
+              "
+              class="p-error"
+            >
+              Confirm password is required.
+            </div>
+            <div
+              *ngIf="signUpForm.get('confirmPassword')?.errors?.['passwordMatch']"
+              class="p-error"
+            >
+              Passwords do not match.
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            pButton
+            label="Sign Up"
+            [disabled]="signUpForm.invalid"
+          ></button>
+        </div>
+        
+      </form>
+    </p-card>
+  </div>
+</div>

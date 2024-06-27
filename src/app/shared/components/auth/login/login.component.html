@@ -1,0 +1,78 @@
+<div class="grid p-fluid">
+  <div class="col-12 md:col-6">
+    <p-card header="Login" subheader="Enter your credentials to log in" styleClass="card">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="p-fluid">
+          
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" pInputText formControlName="email" />
+            <div
+              *ngIf="
+                loginForm.controls['email'].invalid &&
+                (loginForm.controls['email'].dirty ||
+                  loginForm.controls['email'].touched)
+              "
+              class="p-error"
+            >
+              Enter a valid email.
+            </div>
+          </div>
+
+          <h5>Are You ?</h5>
+          <div class="grid formgrid">
+            <div class="col-12 md:col-4">
+              <div class="field-radiobutton">
+                <p-radioButton
+                  formControlName="role"
+                  name="role"
+                  value="player"
+                  inputId="player"
+                ></p-radioButton>
+                <label for="player">player</label>
+              </div>
+            </div>
+            <div class="col-12 md:col-4">
+              <div class="field-radiobutton">
+                <p-radioButton
+                  formControlName="role"
+                  name="role"
+                  value="owner"
+                  inputId="owner"
+                ></p-radioButton>
+                <label for="owner">Owner</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <p-password
+              id="password"
+              formControlName="password"
+              [toggleMask]="true"
+            ></p-password>
+            <div
+              *ngIf="
+                loginForm.controls['password'].invalid &&
+                (loginForm.controls['password'].dirty ||
+                  loginForm.controls['password'].touched)
+              "
+              class="p-error"
+            >
+              Password must be at least 6 characters long.
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            pButton
+            label="Login"
+            [disabled]="loginForm.invalid"
+          ></button>
+        </div>
+      </form>
+    </p-card>
+  </div>
+</div>
