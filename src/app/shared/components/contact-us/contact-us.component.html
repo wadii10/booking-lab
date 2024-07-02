@@ -1,0 +1,143 @@
+<div class="container p-fluid mt-8">
+    <div class="col-12 md:col-6 image-container">
+      <img src="assets/demo/images/landing/mockup.svg" class="w-11" alt="mockup mobile">
+    </div>
+    <div class="col-12 md:col-6 form-container">
+        <form [formGroup]="contactForm" (ngSubmit)="contact()">
+            <div class="p-fluid">
+            <h2>Contact</h2>
+            <div class="grid">
+              <div class="col-12 md:col-6">
+                <div class="field">
+                  <label for="firstName">First Name</label>
+                  <input
+                    id="firstName"
+                    type="text"
+                    pInputText
+                    formControlName="firstName"
+                  />
+                  <div
+                    *ngIf="
+                      contactForm.controls['firstName'].invalid &&
+                      (contactForm.controls['firstName'].dirty ||
+                        contactForm.controls['firstName'].touched)
+                    "
+                    class="p-error"
+                  >
+                    first name is required.
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-12 md:col-6">
+                <div class="field">
+                  <label for="lastName">Last Name</label>
+                  <input
+                    id="lastName"
+                    type="text"
+                    pInputText
+                    formControlName="lastName"
+                  />
+                  <div
+                    *ngIf="
+                      contactForm.controls['lastName'].invalid &&
+                      (contactForm.controls['lastName'].dirty ||
+                        contactForm.controls['lastName'].touched)
+                    "
+                    class="p-error"
+                  >
+                    last name is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+              
+            <div class="grid">
+              <div class="col-12 md:col-6">
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" pInputText formControlName="email" />
+                    <div
+                    *ngIf="
+                      contactForm.controls['email'].invalid &&
+                      (contactForm.controls['email'].dirty ||
+                        contactForm.controls['email'].touched)
+                        "
+                    class="p-error"
+                    >
+                    Enter a valid email.
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 md:col-6">
+                <div class="field">
+                  <label for="phoneNumber">Phone Number</label>
+                  <input
+                    id="phoneNumber"
+                    type="number"
+                    pInputText
+                    formControlName="phoneNumber"
+                  />
+                  <div
+                    *ngIf="
+                      contactForm.controls['phoneNumber'].invalid &&
+                      (contactForm.controls['phoneNumber'].dirty ||
+                        contactForm.controls['phoneNumber'].touched)
+                    "
+                    class="p-error"
+                  >
+                  phone number is required.
+                  </div>
+                  <span class="p-error" *ngIf="contactForm.controls['phoneNumber'].errors">Phone number must be exactly 8 characters.</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="field">
+                <label for="subject">Subject</label>
+                <input
+                  id="subject"
+                  type="text"
+                  pInputText
+                  formControlName="subject"
+                />
+                <div
+                  *ngIf="
+                    contactForm.controls['subject'].invalid &&
+                    (contactForm.controls['subject'].dirty ||
+                      contactForm.controls['subject'].touched)
+                  "
+                  class="p-error"
+                >
+                  subject is required.
+                </div>
+            </div>
+
+            <div class="field">
+                <textarea rows="5" cols="30" placeholder="Your Message" formControlName="message" pInputTextarea></textarea>
+                <div
+                  *ngIf="
+                    contactForm.controls['message'].invalid &&
+                    (contactForm.controls['message'].dirty ||
+                      contactForm.controls['message'].touched)
+                  "
+                  class="p-error"
+                >
+                  message is required.
+                </div>
+            </div>
+
+            <button
+              type="submit"
+              pButton
+              label="Send"
+              [disabled]="contactForm.invalid"
+            ></button>
+            
+          </div>
+          
+        </form>
+      
+    </div>
+  </div>
+  

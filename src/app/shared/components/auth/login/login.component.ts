@@ -49,5 +49,5 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {}
+  login(): void {}
 }

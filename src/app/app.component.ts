@@ -1,14 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { MyFullCalendarModule } from './shared/components/full-calendar/full-calendar.module';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { HomeComponent } from './shared/components/home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent,MyFullCalendarModule],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'booking-lab';

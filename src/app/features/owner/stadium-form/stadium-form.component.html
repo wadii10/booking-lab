@@ -1,0 +1,33 @@
+<div class="p-fluid mt-8">
+    <div class="col-12 md:col-6">
+      <p-card header="Add Stadium" styleClass="card">
+       <form [formGroup]="stadiumForm" (ngSubmit)="addStadium()">
+          <div class="p-fluid">
+            
+            <div class="field">
+              <label for="email">Stadium Name</label>
+              <input id="email" type="text" pInputText formControlName="stadiumName" />
+              <div
+                *ngIf="
+                  stadiumForm.controls['stadiumName'].invalid &&
+                  (stadiumForm.controls['stadiumName'].dirty ||
+                  stadiumForm.controls['stadiumName'].touched)
+                "
+                class="p-error"
+              >
+                Enter a valid name.
+              </div>
+            </div>
+  
+            <button
+              type="submit"
+              pButton
+              label="Add"
+              [disabled]="stadiumForm.invalid"
+            ></button>
+          </div>
+        </form>
+      </p-card>
+    </div>
+  </div>
+  

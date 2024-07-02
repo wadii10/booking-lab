@@ -1,8 +1,12 @@
-<div class="p-fluid mt-8">
-  <div class="col-12 md:col-6">
-    <p-card header="Sign Up" subheader="Create a new account" styleClass="card">
-      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+<div class="container p-fluid mt-8">
+  <div class="col-12 md:col-6 image-container">
+    <img src="assets/demo/images/landing/mockup.svg" class="w-11" alt="mockup mobile">
+  </div>
+  <div class="col-12 md:col-6 form-container">
+    
+      <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
         <div class="p-fluid">
+          <h2>Sign Up</h2>
           <div class="grid">
             <div class="col-12 md:col-6">
               <div class="field">
@@ -140,9 +144,12 @@
             label="Sign Up"
             [disabled]="signUpForm.invalid"
           ></button>
+          <div class="field text-center p-4">
+            Already have an account? <a href="/login">Log in here</a>           
+          </div>
         </div>
         
       </form>
-    </p-card>
+    
   </div>
 </div>

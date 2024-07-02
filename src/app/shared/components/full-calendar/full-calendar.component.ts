@@ -10,44 +10,45 @@ import {
   AfterViewInit,
   TemplateRef,
 } from '@angular/core';
-import { Calendar, CalendarOptions, DateSelectArg, EventClickArg, EventDropArg } from '@fullcalendar/core';
+import {
+  Calendar,
+  CalendarOptions,
+  DateSelectArg,
+  EventClickArg,
+  EventDropArg,
+} from '@fullcalendar/core';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, {
   Draggable,
   DropArg,
 } from '@fullcalendar/interaction';
-import { FullCalendarComponent } from '@fullcalendar/angular';
-import timeGridPlugin from '@fullcalendar/timegrid';
 import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  fromEvent,
-  map,
-} from 'rxjs';
+  FullCalendarComponent,
+  FullCalendarModule,
+} from '@fullcalendar/angular';
+import timeGridPlugin from '@fullcalendar/timegrid';
 
 @Component({
   selector: 'my-full-calendar',
+  standalone: true,
+  imports: [FullCalendarModule],
   templateUrl: './full-calendar.component.html',
   styleUrls: ['./full-calendar.component.scss'],
 })
 export class MyFullCalendarComponent implements OnInit, AfterViewInit {
-  plugins = [     dayGridPlugin,
-    interactionPlugin,
-    timeGridPlugin
-  ]
+  plugins = [dayGridPlugin, interactionPlugin, timeGridPlugin];
   _events!: any[];
-  _editable = false
+  _editable = false;
   @Input() set editable(editable) {
-    this._editable = editable
+    this._editable = editable;
     this.options = {
       ...this.options,
-      editable: editable
+      editable: editable,
     };
   }
   get editable() {
-    return this._editable
+    return this._editable;
   }
   @Input() set events(events: any[]) {
     (this.fullcalendar as any)?.getApi()?.removeAllEvents();
@@ -88,29 +89,28 @@ export class MyFullCalendarComponent implements OnInit, AfterViewInit {
   @ContentChild('draggableListHeader', { read: TemplateRef, static: false })
   draggableListHeader!: TemplateRef<any>;
   options: CalendarOptions = {
+    viewClassNames: 'card',
     select: (arg: DateSelectArg) => {
       this.onSelect.emit(arg);
     },
-    eventClick: (e) => {
-      
-    },
+    eventClick: (e) => {},
     eventDrop: (arg: EventDropArg) => {
       this.onMove.emit(arg);
     },
     drop: (arg: DropArg) => {
       this.onAdd.emit(arg);
     },
-    plugins:this.plugins,
-    slotDuration:"02:00:00",
-    slotMinTime:"09:00:00",
-    slotMaxTime:"23:00:00",
+    plugins: this.plugins,
+    slotDuration: '02:00:00',
+    slotMinTime: '09:00:00',
+    slotMaxTime: '23:00:00',
     firstDay: 1,
     selectable: true,
     editable: this.editable,
     droppable: this.editable,
 
     aspectRatio: 1,
-    height: '350px',
+    height: '500px',
     eventSources: [
       {
         events: this.events || [],
@@ -123,67 +123,18 @@ export class MyFullCalendarComponent implements OnInit, AfterViewInit {
     defaultAllDay: false,
     initialView: this.initialView,
   };
-  @Output() query = new EventEmitter<string>();
 
-  constructor(
-  ) {
+  constructor() {
     const name = Calendar.name;
-    this.weekNumber = this.calculateWeekNumber();
   }
   ngAfterViewInit(): void {
-    this.initCalendar();
-  }
-  doNextWeek() {
-    this.weekNumber = this.calculateWeekNumber();
-  }
-  doPreviostWeek() {
-    this.weekNumber = this.calculateWeekNumber();
-  }
-  calculateWeekNumber() {
-    const currentDate = (this.fullcalendar as any)?.calendar?.currentData
-      ?.currentDate
-      ? new Date((this.fullcalendar as any)?.calendar?.currentData?.currentDate)
-      : new Date();
-    const startDate = new Date(currentDate.getFullYear(), 0, 1);
-    const days = Math.floor(
-      (Number(currentDate) - Number(startDate)) / (24 * 60 * 60 * 1000)
-    );
-    this.onDateChanged.emit();
-    return `${Math.ceil(days / 7)}-${currentDate.getFullYear()}`;
+    //this.initCalendar();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   private initCalendar() {
-    this.prevButton = (this.fullcalendar as any).element.nativeElement
-      .querySelector('.fc-next-button')
-      .addEventListener('click', () => {
-        this.doNextWeek();
-      });
-    this.prevButton = (this.fullcalendar as any).element.nativeElement
-      .querySelector('.fc-prev-button')
-      .addEventListener('click', () => {
-        this.doPreviostWeek();
-      });
-    this.todayButton = (this.fullcalendar as any).element.nativeElement
-      .querySelector('.fc-today-button')
-      .addEventListener('click', () => {
-        this.weekNumber = this.calculateWeekNumber();
-      });
-    this.weekNumber = this.calculateWeekNumber();
-    const foo = document.getElementById('filter');
-    const foo$ = foo && fromEvent(foo as any, 'input').pipe(
-      map((e) => (foo as any).value)
-    );
-    const suggestions$ = foo$?.pipe(
-      debounceTime(350),
-      filter((query) => (query && query.length > 1) || !query),
-      distinctUntilChanged()
-    );
-    suggestions$?.subscribe((x) => {
-      this.query.emit(x);
-    });
-    this.intiDragable();
+    //this.intiDragable();
   }
   intiDragable() {
     this.external &&

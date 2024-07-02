@@ -11,11 +11,17 @@ $gutter: 1rem; //for primeflex grid system
 @import "assets/demo/styles/badges.scss";
 @import "assets/demo/styles/code.scss";
 
-
 .p-fluid {
-    &.mt-8{
-        display: flex;
-        justify-content: center;
-    }
+  &.mt-8 {
+    display: flex;
+    justify-content: center;
+  }
+}
 
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: #eee;
 }

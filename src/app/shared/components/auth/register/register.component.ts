@@ -63,5 +63,5 @@ export class RegisterComponent implements OnInit {
     return {};
   }
 
-  onSubmit(): void {}
+  signUp(): void {}
 }

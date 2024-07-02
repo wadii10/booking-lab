@@ -15,6 +15,12 @@
   }
 }
 
+::ng-deep{
+  .fc .fc-timegrid-slot {
+    height: 3.5em !important;
+  }
+}
+
 .calendar-title {
   padding: 0px 5px;
   text-align: center;
