@@ -1,27 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
+import { HomeService } from '../../services/home.service';
+
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [CarouselModule, ButtonModule, TagModule],
+  imports: [CarouselModule, ButtonModule],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
 })
-export class CarouselComponent implements OnInit{
-  activities: any[] = [
-    { name: 'Foot-ball', photo: 'assets/demo/images/activities/football.jpeg' },
-    { name: 'Basket-ball', photo: 'assets/demo/images/activities/basketball.jpeg' },
-    { name: 'Hand-ball', photo: 'assets/demo/images/activities/handball.jpeg' },
-    { name: 'Tennis', photo: 'assets/demo/images/activities/tennis.jpeg' },
-  ];
-
+export class CarouselComponent {
+  
   responsiveOptions: any[] | undefined;
+ 
+  constructor(private HS:HomeService) {
 
-  ngOnInit() {
-    this.activities;
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -40,4 +35,6 @@ export class CarouselComponent implements OnInit{
       },
     ];
   }
+
+  activities : any[] = this.HS.activities;
 }

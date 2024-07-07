@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
+import { HomeService } from '../../services/home.service';
 
 @Component({
   selector: 'app-events',
@@ -11,16 +12,11 @@ import { TagModule } from 'primeng/tag';
   styleUrl: './events.component.scss'
 })
 export class EventsComponent implements OnInit{
-  events = [
-    { name: 'FootBall-Tournoi', image: 'assets/demo/images/activities/football.jpeg' },
-    { name: 'BaskeBall-Event', image: 'assets/demo/images/activities/basketball.jpeg' },
-    { name: 'HandBall-Event', image: 'assets/demo/images/activities/handball.jpeg' },
-  ];
-
+ 
   responsiveOptions: any[] | undefined;
 
-  ngOnInit() {
-    
+  constructor(private HS:HomeService) {
+
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
@@ -39,5 +35,10 @@ export class EventsComponent implements OnInit{
       },
     ];
   }
-
+  events !: any[];
+  ngOnInit(): void {
+    this.events = this.HS.events;
+  }
+  
+  
 }

@@ -1,0 +1,15 @@
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    margin-right: 1rem;
+}
+
+.header-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}

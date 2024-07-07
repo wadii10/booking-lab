@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { RippleModule } from 'primeng/ripple';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { EventsComponent } from '../events/events.component';
+import { RecommendationComponent } from '../recommendation/recommendation.component';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,8 @@ import { EventsComponent } from '../events/events.component';
     FormsModule,
     RippleModule,
     CarouselComponent,
-    EventsComponent
+    EventsComponent,
+    RecommendationComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
