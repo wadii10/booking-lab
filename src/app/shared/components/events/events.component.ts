@@ -9,32 +9,14 @@ import { HomeService } from '../../services/home.service';
   standalone: true,
   imports: [CarouselModule, ButtonModule, TagModule],
   templateUrl: './events.component.html',
-  styleUrl: './events.component.scss'
+  styleUrl: './events.component.scss',
+  host: {ngSkipHydration:"true"},
 })
 export class EventsComponent implements OnInit{
  
   responsiveOptions: any[] | undefined;
 
-  constructor(private HS:HomeService) {
-
-    this.responsiveOptions = [
-      {
-        breakpoint: '1199px',
-        numVisible: 1,
-        numScroll: 1,
-      },
-      {
-        breakpoint: '991px',
-        numVisible: 2,
-        numScroll: 1,
-      },
-      {
-        breakpoint: '767px',
-        numVisible: 1,
-        numScroll: 1,
-      },
-    ];
-  }
+  constructor(private HS:HomeService) {}
   events !: any[];
   ngOnInit(): void {
     this.events = this.HS.events;

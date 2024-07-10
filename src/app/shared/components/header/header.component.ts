@@ -21,5 +21,4 @@ export class HeaderComponent {
   router = inject(Router);
   
   title: String = "Booking App";
-
 }

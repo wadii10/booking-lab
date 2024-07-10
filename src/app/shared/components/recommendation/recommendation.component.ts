@@ -24,7 +24,8 @@ import { CommonModule } from '@angular/common';
   ],
   providers: [HomeService],
   templateUrl: './recommendation.component.html',
-  styleUrl: './recommendation.component.scss'
+  styleUrl: './recommendation.component.scss',
+  host: {ngSkipHydration:"true"},
 })
 export class RecommendationComponent implements OnInit{
 
@@ -34,28 +35,17 @@ export class RecommendationComponent implements OnInit{
 
     
   }
-  activities !: any[] ;
+  activities: any[] = [
+    { name: 'Foot-ball', photo: 'assets/demo/images/activities/football.jpeg' },
+    { name: 'Basket-ball', photo: 'assets/demo/images/activities/basketball.jpeg' },
+    { name: 'Hand-ball', photo: 'assets/demo/images/activities/handball.jpeg' },
+    { name: 'Tennis', photo: 'assets/demo/images/activities/tennis.jpeg' },
+  ];
+
+  //activities !: any[] ;
 
   ngOnInit(): void {
-    this.activities = this.HS.activities;
-
-    this.responsiveOptions = [
-      {
-        breakpoint: '1199px',
-        numVisible: 3,
-        numScroll: 1,
-      },
-      {
-        breakpoint: '991px',
-        numVisible: 3,
-        numScroll: 1,
-      },
-      {
-        breakpoint: '767px',
-        numVisible: 3,
-        numScroll: 1,
-      },
-    ];
+    
   }
   
 }

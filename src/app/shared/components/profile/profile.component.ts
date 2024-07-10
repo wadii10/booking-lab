@@ -1,42 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule,
-  FormBuilder,
-} from '@angular/forms';
-
-import { CardModule } from 'primeng/card';
-import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { PasswordModule } from 'primeng/password';
-import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { DividerModule } from 'primeng/divider';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { CheckboxModule } from 'primeng/checkbox';
+import { AvatarModule } from 'primeng/avatar';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-profile',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    CardModule,
-    InputTextModule,
     ButtonModule,
+    CheckboxModule,
+    InputTextModule,
     FormsModule,
-    FloatLabelModule,
     PasswordModule,
-    RadioButtonModule,
-    DividerModule
+    AvatarModule,
+    ReactiveFormsModule
   ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.scss',
 })
-export class RegisterComponent implements OnInit {
-  title: String = "Booking App";
+export class ProfileComponent implements OnInit {
+
   signUpForm!: FormGroup;
   constructor(private fb: FormBuilder) {}
 
@@ -66,5 +54,5 @@ export class RegisterComponent implements OnInit {
     return {};
   }
 
-  signUp(): void {}
+  update(): void {}
 }

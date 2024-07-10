@@ -1,3 +1,5 @@
+<app-header />
+<router-outlet></router-outlet>
 <div class="surface-0 flex justify-content-center" style="margin-top: 2rem">
   <div id="home" class="landing-wrapper overflow-hidden">
     <div
@@ -10,42 +12,58 @@
           <span class="font-light block">Booking App</span>Book, Search & Have
           Fun
         </h1>
-      </div>
-      <br />
-      <div class="flex justify-content-center">
-        <div class="col-4">
-          <div class="card">
-            <h5>Search</h5>
-            <div class="p-fluid p-formgrid grid">
-              <div class="field col-12 md:col-6">
-                <label htmlFor="state">State</label>
-                <p-dropdown
-                  [options]="dropdownItems"
-                  optionLabel="name"
-                  [(ngModel)]="selectedState"
-                ></p-dropdown>
-              </div>
-              <div class="field col-12 md:col-6">
-                <label htmlFor="state">Activities</label>
-                <p-dropdown
-                  [options]="dropdownItems"
-                  optionLabel="name"
-                  [(ngModel)]="selectedState"
-                ></p-dropdown>
-              </div>
-              <div class="block col-12 block">
-                <p-button
-                class="block"
-                  label="Search"
-                  icon="pi pi-search"
-                  [loading]="loading[0]"
-                  (onClick)="load(0)"
-                />
-              </div>
+        <div class="flex">
+          <div class="col-5">
+            <div class="card">
+              <h5>Search</h5>
+              <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                <div class="p-fluid p-formgrid grid">
+                  <div class="field md:col-12">
+                    <label for="state">State</label>
+                    <p-dropdown
+                      id="state"
+                      formControlName="state"
+                      [options]="dropdownItems"
+                      optionLabel="name"
+                    ></p-dropdown>
+                  </div>
+
+                  <div class="field md:col-6">
+                    <label for="activity">Activities</label>
+                    <p-dropdown
+                      id="activity"
+                      [options]="dropdownItems"
+                      optionLabel="name"
+                      formControlName="activity"
+                    ></p-dropdown>
+                  </div>
+
+                  <div class="field md:col-6">
+                    <label for="date">When?</label>
+                    <p-calendar
+                      id="date"
+                      formControlName="date"
+                      [showIcon]="true"
+                      inputId="buttondisplay"
+                      [showOnFocus]="false"
+                    />
+                  </div>
+
+                  <div class="field md:col-12">
+                    <p-button
+                      type="submit"
+                      label="Search"
+                      icon="pi pi-search"
+                      [loading]="loading[0]"
+                    />
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
+      <br />
     </div>
 
     <div id="pricing" class="py-4 px-4 lg:px-8 my-2 md:my-4">
@@ -84,3 +102,4 @@
     </div>
   </div>
 </div>
+<app-footer />

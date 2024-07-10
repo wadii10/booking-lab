@@ -1,0 +1,142 @@
+<div class="profile">
+  <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+     
+      <div
+        style="
+          border-radius: 56px;
+          padding: 0.3rem;
+          background: linear-gradient(
+            180deg,
+            var(--primary-color) 10%,
+            rgba(33, 150, 243, 0) 30%
+          );
+        "
+      >
+      <div
+      class="w-full surface-card py-8 px-5 sm:px-8"
+      style="border-radius: 53px"
+      >
+      <div class="text-center mb-5">
+            <img src="assets/demo/images/activities/football.jpeg" alt="Sakai logo" class="mb-4 w-10rem flex-shrink-0" style="border-radius: 340%;">
+            <div class="text-900 text-3xl font-medium mb-3">Welcome, Isabel!</div>
+          </div>
+  
+          <div>
+            <form [formGroup]="signUpForm" (ngSubmit)="update()">
+              <div class="p-fluid">
+                <div class="grid justify-content-center">
+                  <div class="col-12 md:col-4">
+                    <div class="field">
+                      <label for="firstName">First Name</label>
+                      <input
+                        id="firstName"
+                        type="text"
+                        pInputText
+                        formControlName="firstName"
+                      />
+                    </div>
+                  </div>
+      
+                  <div class="col-12 md:col-4">
+                    <div class="field">
+                      <label for="lastName">Last Name</label>
+                      <input
+                        id="lastName"
+                        type="text"
+                        pInputText
+                        formControlName="lastName"
+                      />
+                   
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="grid justify-content-center">
+                  <div class="col-8">
+                    <div class="field">
+                      <label for="email">Email</label>
+                      <input id="email" type="email" pInputText formControlName="email" />
+                      <div
+                      *ngIf="
+                        signUpForm.controls['email'].invalid &&
+                        (signUpForm.controls['email'].dirty ||
+                          signUpForm.controls['email'].touched)
+                          "
+                      class="p-error"
+                      >
+                      Enter a valid email.
+                    </div>
+                  </div>
+                  </div>
+                </div>
+      
+                <div class="grid justify-content-center">
+                  <div class="col-12 md:col-4">
+                    <div class="field">
+                      <label for="password">Password</label>
+                      <p-password
+                        id="password"
+                        formControlName="password"
+                        [toggleMask]="true"
+                        ></p-password>
+                        <div
+                        *ngIf="
+                          signUpForm.controls['password'].invalid &&
+                          (signUpForm.controls['password'].dirty ||
+                            signUpForm.controls['password'].touched)
+                            "
+                        class="p-error"
+                        >
+                        Password must be at least 6 characters long.
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-12 md:col-4"> 
+                    <div class="field">
+                      <label for="confirmPassword">Confirm Password</label>
+                      <p-password
+                      id="confirmPassword"
+                      formControlName="confirmPassword"
+                      [toggleMask]="true"
+                      ></p-password>
+                      <div
+                        *ngIf="
+                          signUpForm.controls['confirmPassword'].invalid &&
+                          (signUpForm.controls['confirmPassword'].dirty ||
+                            signUpForm.controls['confirmPassword'].touched)
+                        "
+                        class="p-error"
+                      >
+                        Confirm password is required.
+                      </div>
+                      <div
+                        *ngIf="signUpForm.get('confirmPassword')?.errors?.['passwordMatch']"
+                        class="p-error"
+                      >
+                        Passwords do not match.
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                
+                  <div class="grid justify-content-center">
+                    <div class="col-12 md:col-4">
+                      <button
+                        type="submit"
+                        pButton
+                        label="Update"
+                        [disabled]="signUpForm.invalid"
+                      ></button>
+                    </div>
+                  </div>
+                
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

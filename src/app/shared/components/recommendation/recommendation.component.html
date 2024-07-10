@@ -1,11 +1,12 @@
 <p-carousel
-  [value]="activities" 
-  [circular]="false"
-  [responsiveOptions]="responsiveOptions"
+  [value]="activities"
+  [numVisible]="3"
+  [numScroll]="1"
+  [circular]="true"
 >
 <ng-template let-activity pTemplate="item">
 
-  <div class="md:p-2">
+  <div class="md:p-7">
     <div
       class="p-2 flex flex-column  cursor-pointer border-2 border-secondary transition-duration-300 transition-all"
       style="border-radius: 10px"
@@ -16,20 +17,20 @@
         alt="free"
         />
         <p-tag value="Prix 150 Dt" class="m-2 absolute" />
-      <div class="p-0 flex flex-column text-900">
+      <div class="p-0 m-0 flex-row text-900">
         <div class="flex gap-2">
           <div class="col-2">
             <p-avatar label="O" size="xlarge" />
           </div>
           <div class="p-0 flex flex-column">
             <span class="text-center pt-9 p-3 font-bold">{{activity.name}}</span>
-            <span class="text-center pt-9 p-0 font-light">Foot Ball</span>
+            <span class="text-center pt-9 p-1 font-light">Foot Ball</span>
           </div>
         </div>
       </div>
-      <p-divider class="w-full bg-surface-50"></p-divider>
+      <p-divider class="w-full bg-surface-60"></p-divider>
       <div class="text-center">
-        <ul class="justify-content-around list-none p-1 flex text-900 flex-row">
+        <ul class="justify-content-around list-none p-0 mt-0 flex text-900 flex-row">
           <li class="p-2">
             <i class="pi pi-clock text-xl text-cyan-500 mr-2"></i>
             <span class="text-xl line-height-3">75</span>

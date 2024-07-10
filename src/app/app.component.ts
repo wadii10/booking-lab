@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
 import { HomeComponent } from './shared/components/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +9,7 @@ import { HomeComponent } from './shared/components/home/home.component';
   imports: [
     RouterOutlet,
     RouterModule,
-    HeaderComponent,
-    FooterComponent,
+    HttpClientModule,
     HomeComponent
   ],
   templateUrl: './app.component.html',

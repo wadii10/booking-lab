@@ -1,155 +1,212 @@
-<div class="container p-fluid mt-8">
-  <div class="col-12 md:col-6 image-container">
-    <img src="assets/demo/images/landing/mockup.svg" class="w-11" alt="mockup mobile">
-  </div>
-  <div class="col-12 md:col-6 form-container">
-    
-      <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
-        <div class="p-fluid">
-          <h2>Sign Up</h2>
-          <div class="grid">
-            <div class="col-12 md:col-6">
-              <div class="field">
-                <label for="firstName">First Name</label>
-                <input
-                  id="firstName"
-                  type="text"
-                  pInputText
-                  formControlName="firstName"
-                />
-                <div
-                  *ngIf="
-                    signUpForm.controls['firstName'].invalid &&
-                    (signUpForm.controls['firstName'].dirty ||
-                      signUpForm.controls['firstName'].touched)
-                  "
-                  class="p-error"
-                >
-                  first name is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 md:col-6">
-              <div class="field">
-                <label for="lastName">Last Name</label>
-                <input
-                  id="lastName"
-                  type="text"
-                  pInputText
-                  formControlName="lastName"
-                />
-                <div
-                  *ngIf="
-                    signUpForm.controls['lastName'].invalid &&
-                    (signUpForm.controls['lastName'].dirty ||
-                      signUpForm.controls['lastName'].touched)
-                  "
-                  class="p-error"
-                >
-                  last name is required.
-                </div>
-              </div>
-            </div>
-          </div>
-            
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" type="email" pInputText formControlName="email" />
-              <div
-              *ngIf="
-                signUpForm.controls['email'].invalid &&
-                (signUpForm.controls['email'].dirty ||
-                  signUpForm.controls['email'].touched)
-                  "
-              class="p-error"
-              >
-              Enter a valid email.
-            </div>
-          </div>
-
-          <h5>Are You ?</h5>
-          <div class="grid">
-            <div class="col-12 md:col-4">
-              <div class="field-radiobutton">
-                <p-radioButton
-                formControlName="role"
-                name="role"
-                value="player"
-                  inputId="player"
-                ></p-radioButton>
-                <label for="player">player</label>
-              </div>
-            </div>
-            <div class="col-12 md:col-4">
-              <div class="field-radiobutton">
-                <p-radioButton
-                formControlName="role"
-                name="role"
-                value="owner"
-                inputId="owner"
-                ></p-radioButton>
-                <label for="owner">Owner</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="password">Password</label>
-            <p-password
-              id="password"
-              formControlName="password"
-              [toggleMask]="true"
-              ></p-password>
-              <div
-              *ngIf="
-                signUpForm.controls['password'].invalid &&
-                (signUpForm.controls['password'].dirty ||
-                  signUpForm.controls['password'].touched)
-                  "
-              class="p-error"
-              >
-              Password must be at least 6 characters long.
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="confirmPassword">Confirm Password</label>
-            <p-password
-            id="confirmPassword"
-            formControlName="confirmPassword"
-            [toggleMask]="true"
-            ></p-password>
-            <div
-              *ngIf="
-                signUpForm.controls['confirmPassword'].invalid &&
-                (signUpForm.controls['confirmPassword'].dirty ||
-                  signUpForm.controls['confirmPassword'].touched)
-              "
-              class="p-error"
-            >
-              Confirm password is required.
-            </div>
-            <div
-              *ngIf="signUpForm.get('confirmPassword')?.errors?.['passwordMatch']"
-              class="p-error"
-            >
-              Passwords do not match.
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            pButton
-            label="Sign Up"
-            [disabled]="signUpForm.invalid"
-          ></button>
-          <div class="field text-center p-4">
-            Already have an account? <a href="/login">Log in here</a>           
-          </div>
+<div class="col-12">
+  <div class="grid">
+    <div class="col-5 align-items-center justify-content-center p-8 block">
+      <div class="flex flex-column">
+        <header class="flex flex-row align-items-center p-6">
+          <a router-link="/home">
+            <span class="flex flex-row align-items-center">
+              <img
+                class="logo"
+                src="assets/layout/images/app-logo-dark.svg"
+                style="height: 90px; width: 75px"
+                alt="logo"
+              />
+              <p>{{ title }}</p>
+            </span>
+          </a>
+        </header>
+        <div
+          class="main-content flex-grow-1 d-flex align-items-center justify-content-center p-6"
+        >
+          <h1 class="text-6xl font-bold text-gray-900 line-height-2">
+            <span class="font-light block">Booking App</span>Book, Search & Have
+            Fun
+          </h1>
         </div>
-        
-      </form>
-    
+        <footer class="footer m-8">
+          <div class="footer-copyright">
+            <div class="footer-copyright-wrapper">
+              <p class="footer-copyright-text">
+                <a class="footer-copyright-link" href="#" target="_self">
+                  ©2024.| All rights reserved.
+                </a>
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <div class="col-1">
+      <p-divider layout="vertical"></p-divider>
+    </div>
+
+    <div class="col-6 justify-content-center p-8 align-items-center">
+      <div class="p-fluid">
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+          <div class="p-fluid">
+            <h2>Sign Up</h2>
+
+            <div class="grid">
+              <div class="col-6 md:col-4">
+                <div class="field">
+                  <label for="firstName">First Name</label>
+                  <input
+                    id="firstName"
+                    type="text"
+                    pInputText
+                    formControlName="firstName"
+                  />
+                  <div
+                    *ngIf="
+                      signUpForm.controls['firstName'].invalid &&
+                      (signUpForm.controls['firstName'].dirty ||
+                        signUpForm.controls['firstName'].touched)
+                    "
+                    class="p-error"
+                  >
+                    first name is required.
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-6 md:col-4">
+                <div class="field">
+                  <label for="lastName">Last Name</label>
+                  <input
+                    id="lastName"
+                    type="text"
+                    pInputText
+                    formControlName="lastName"
+                  />
+                  <div
+                    *ngIf="
+                      signUpForm.controls['lastName'].invalid &&
+                      (signUpForm.controls['lastName'].dirty ||
+                        signUpForm.controls['lastName'].touched)
+                    "
+                    class="p-error"
+                  >
+                    last name is required.
+                  </div>
+                </div>
+              </div>
+
+            <div class="col-8 md:col4 field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                pInputText
+                formControlName="email"
+              />
+              <div
+                *ngIf="
+                  signUpForm.controls['email'].invalid &&
+                  (signUpForm.controls['email'].dirty ||
+                    signUpForm.controls['email'].touched)
+                "
+                class="p-error"
+              >
+                Enter a valid email.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <h5>Are You ?</h5>
+              <div class="grid">
+                <div class="col-9 md:col-4">
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      formControlName="role"
+                      name="role"
+                      value="player"
+                      inputId="player"
+                    ></p-radioButton>
+                    <label for="player">player</label>
+                  </div>
+                </div>
+                <div class="col-8 md:col-4">
+                  <div class="field-radiobutton">
+                    <p-radioButton
+                      formControlName="role"
+                      name="role"
+                      value="owner"
+                      inputId="owner"
+                    ></p-radioButton>
+                    <label for="owner">Owner</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <div class="col-6 md:col-4">
+                <div class="field">
+                  <label for="password">Password</label>
+                <p-password
+                  id="password"
+                  formControlName="password"
+                  [toggleMask]="true"
+                ></p-password>
+                <div
+                  *ngIf="
+                    signUpForm.controls['password'].invalid &&
+                    (signUpForm.controls['password'].dirty ||
+                      signUpForm.controls['password'].touched)
+                  "
+                  class="p-error"
+                >
+                  Password must be at least 6 characters long.
+                </div>
+                </div>
+              </div>
+
+              <div class="col-6 md:col-4">
+                <div class="field">
+                  <label for="confirmPassword">Confirm Password</label>
+                <p-password
+                  id="confirmPassword"
+                  formControlName="confirmPassword"
+                  [toggleMask]="true"
+                ></p-password>
+                <div
+                  *ngIf="
+                    signUpForm.controls['confirmPassword'].invalid &&
+                    (signUpForm.controls['confirmPassword'].dirty ||
+                      signUpForm.controls['confirmPassword'].touched)
+                  "
+                  class="p-error"
+                >
+                  Confirm password is required.
+                </div>
+                <div
+                  *ngIf="signUpForm.get('confirmPassword')?.errors?.['passwordMatch']"
+                  class="p-error"
+                >
+                  Passwords do not match.
+                </div>
+                </div>
+              </div>
+
+              <div class="col-8">
+                <button
+                  type="submit"
+                  pButton
+                  label="Sign Up"
+                  [disabled]="signUpForm.invalid"
+                ></button>
+              </div>
+              
+              <div class="col-8">
+                <div class="field text-center p-4">
+                  Already have an account? <a href="/login">Log in here</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

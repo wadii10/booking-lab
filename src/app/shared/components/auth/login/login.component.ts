@@ -15,6 +15,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-login',
@@ -28,12 +29,14 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     FormsModule,
     FloatLabelModule,
     PasswordModule,
-    RadioButtonModule
+    RadioButtonModule,
+    DividerModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
+  title: String = "Booking App";
   loginForm!: FormGroup;
   constructor(private fb: FormBuilder) {}
 

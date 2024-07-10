@@ -1,10 +1,9 @@
-<div class="card"> {{events | json}}
+
   <p-carousel
     [value]="events"
     [numVisible]="3"
     [numScroll]="3"
     [circular]="true"
-    [responsiveOptions]="responsiveOptions"
     autoplayInterval="3000"
   >
     <ng-template let-event pTemplate="item">
@@ -25,4 +24,4 @@
       </div>
     </ng-template>
   </p-carousel>
-</div>
+
