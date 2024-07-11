@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -10,6 +10,7 @@ import { InputMaskModule } from "primeng/inputmask";
 import { InputNumberModule } from "primeng/inputnumber";
 import { CascadeSelectModule } from "primeng/cascadeselect";
 import { MultiSelectModule } from "primeng/multiselect";
+import { ButtonModule } from 'primeng/button';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { MultiSelectModule } from "primeng/multiselect";
   imports: [
     CommonModule,
 		FormsModule,
+		ReactiveFormsModule,
 		AutoCompleteModule,
 		ChipsModule,
 		DropdownModule,
@@ -27,11 +29,33 @@ import { MultiSelectModule } from "primeng/multiselect";
 		MultiSelectModule,
 		InputTextareaModule,
 		InputTextModule,
-		InputNumberModule
+		InputNumberModule,
+		ButtonModule
   ],
   templateUrl: './company-form.component.html',
   styleUrl: './company-form.component.scss'
 })
-export class CompanyFormComponent {
-	value1: number = 42723;
-}
+export class CompanyFormComponent implements OnInit {
+	
+	companyForm!: FormGroup;
+	constructor(private fb: FormBuilder) {}
+  
+	ngOnInit(): void {
+	  this.initForm();
+	}
+  
+	initForm(): void {
+	  this.companyForm = this.fb.group(
+		{
+		  companyName: ['', Validators.required],
+		  companyZip: [null, Validators.required],
+		  companyAdresse: ['', Validators.required],
+		  companyState: ['', Validators.required],
+		  companyEmail: ['', [Validators.required, Validators.email]],
+		  companyPhone: [null, [Validators.required, Validators.minLength(8)]],
+		}
+	  );
+	}
+  
+	send(): void {}
+  }

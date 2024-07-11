@@ -1,0 +1,57 @@
+<div class="surface-0 flex justify-content-center" style="margin-top: 2rem">
+    <div id="home" class="landing-wrapper overflow-hidden">
+      <div
+        id="hero"
+        class="flex flex-column pt-4 px-4 lg:px-8 overflow-hidden"
+        style="background-color: #eee"
+      >
+        <div class="mx-4 md:mx-8 mt-0 md:mt-4">
+          <h1 class="text-6xl font-bold text-gray-900 line-height-2">
+            <span class="font-light block">Booking App</span>Book, Search & Have
+            Fun
+          </h1>
+          <div class="flex">
+            <div class="col-5">
+              <app-search-form/>
+            </div>
+          </div>
+        </div>
+        <br />
+      </div>
+  
+      <div id="pricing" class="py-4 px-4 lg:px-8 my-2 md:my-4">
+        <div class="text-left">
+          <h2 class="text-900 font-normal mb-2">Recommendation</h2>
+        </div>
+  
+        <div class="grid justify-content-between mt-8 md:mt-0">
+          <div class="col-12 p-0 md:p-3 mt-4 md:mt-0">
+            <app-recommendation />
+          </div>
+        </div>
+      </div>
+  
+      <div
+        id="activities"
+        class="py-4 px-4 lg:px-8 mt-5 mx-0 lg:mx-2"
+        style="background-color: #eee"
+      >
+        <div class="grid justify-content-center">
+          <div class="col-12 text-center mt-8 mb-4">
+            <h2 class="text-900 font-normal mb-2">Our Activities</h2>
+          </div>
+  
+          <app-carousel />
+        </div>
+      </div>
+  
+      <div id="events" class="py-4 px-4 lg:px-8 mt-5 mx-0 lg:mx-2">
+        <div class="grid justify-content-center">
+          <div class="col-12 text-center mt-8 mb-4">
+            <h2 class="text-900 font-normal mb-2">Our events</h2>
+          </div>
+          <app-events />
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,47 @@
+<div class="card">
+    <h5>Search</h5>
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="p-fluid p-formgrid grid">
+        <div class="field md:col-12">
+          <label for="state">State</label>
+          <p-dropdown
+            id="state"
+            formControlName="state"
+            [options]="dropdownItems"
+            optionLabel="name"
+          ></p-dropdown>
+        </div>
+
+        <div class="field md:col-6">
+          <label for="activity">Activities</label>
+          <p-dropdown
+            id="activity"
+            [options]="dropdownItems"
+            optionLabel="name"
+            formControlName="activity"
+          ></p-dropdown>
+        </div>
+
+        <div class="field md:col-6">
+          <label for="date">When?</label>
+          <p-calendar
+            id="date"
+            formControlName="date"
+            [showIcon]="true"
+            inputId="buttondisplay"
+            [showOnFocus]="false"
+          />
+        </div>
+        
+          <div class="field md:col-12">
+            <p-button
+              type="submit"
+              label="Search"
+              icon="pi pi-search"
+              [loading]="loading[0]"
+            />
+          </div>
+        
+      </div>
+    </form>
+  </div>

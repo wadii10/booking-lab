@@ -3,7 +3,7 @@
     <div class="col-5 align-items-center justify-content-center p-8 block">
       <div class="flex flex-column">
         <header class="flex flex-row align-items-center p-6">
-          <a router-link="/home">
+          <a [routerLink]="['/']" >
             <span class="flex flex-row align-items-center">
               <img
                 class="logo"
@@ -11,7 +11,7 @@
                 style="height: 90px; width: 75px"
                 alt="logo"
               />
-              <p>{{ title }}</p>
+              <p class="text-gray-900">{{ title }}</p>
             </span>
           </a>
         </header>

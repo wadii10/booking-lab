@@ -16,6 +16,7 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DividerModule } from 'primeng/divider';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ import { DividerModule } from 'primeng/divider';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterLink,
     CardModule,
     InputTextModule,
     ButtonModule,

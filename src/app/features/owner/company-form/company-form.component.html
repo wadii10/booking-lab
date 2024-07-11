@@ -1,4 +1,4 @@
-<div class="surface-0 flex flex-column justify-content-center">
+<div class="surface-0 flex flex-column justify-content-center" >
   <div class="mx-4 py-8 md:mx-8 mt-4 md:mt-6 z-2">
     <h1 class="text-6xl font-bold text-gray-900 line-height-2">
       <span class="font-light block">BECOME PARTNER</span>Booking App
@@ -11,7 +11,7 @@
       class="w-6"
       style="
         height: 100%;
-        padding: 0.8px;
+        padding: 0.9px;
         border-radius: 10px;
         background: linear-gradient(
             90deg,
@@ -26,37 +26,40 @@
       "
     >
       <div class="card p-6 surface-card h-full" style="border: none">
-        <form action="">
+        <form [formGroup]="companyForm" (ngSubmit)="send()">
           <h5>Info Company</h5>
           <div class="p-fluid grid">
             <div class="field md:col-6">
-              <label htmlFor="firstname2">Company Name</label>
-              <input pInputText id="firstname2" type="text" />
+              <label for="companyName">Company Name</label>
+              <input pInputText placeholder="Company Name" id="companyName" formControlName="companyName" />
             </div>
             <div class="field md:col-6">
-              <label htmlFor="lastname2">Code</label>
-              <p-inputNumber inputId="integeronly" [(ngModel)]="value1" />
+              <label for="companyZip">Zip Code</label>
+              <p-inputNumber mode="decimal" id="companyZip" formControlName="companyZip" [useGrouping]="false"/>
             </div>
             <div class="field md:col-8">
-              <label htmlFor="address">Address</label>
-              <input pInputTextarea id="address" rows="4" />
+              <label for="address">Address</label>
+              <input pInputTextarea id="address" rows="4" formControlName="companyAdresse" />
             </div>
             <div class="field md:col-4">
-              <label htmlFor="state">State</label>
-              <p-dropdown optionLabel="name"></p-dropdown>
+              <label for="state">State</label>
+              <p-dropdown id optionLabel="name" formControlName="companyState" ></p-dropdown>
             </div>
           </div>
           <h5>Contact Company</h5>
           <div class="p-fluid grid">
             <div class="field md:col-6">
-              <label htmlFor="firstname2">Email</label>
-              <input pInputText id="firstname2" type="email" />
+              <label for="email">Email</label>
+              <input pInputText id="email" type="email" placeholder="Email" formControlName="companyEmail"/>
             </div>
             <div class="field md:col-6">
-              <label htmlFor="lastname2">Phone</label>
-              <p-inputNumber inputId="integeronly" />
+              <label for="phone">Phone</label>
+              <p-inputNumber mode="decimal" id="phone" formControlName="companyPhone" [useGrouping]="false"/>
             </div>
           </div>
+          
+          <p-button type="submit" label="Send" [disabled]="companyForm.invalid" />
+          
         </form>
       </div>
     </div>
