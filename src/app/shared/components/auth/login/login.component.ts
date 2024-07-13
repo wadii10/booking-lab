@@ -16,12 +16,16 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DividerModule } from 'primeng/divider';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../services/auth/auth.service';
+import { UserLogin } from '../../../models/User';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+    HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
@@ -32,15 +36,18 @@ import { RouterLink } from '@angular/router';
     FloatLabelModule,
     PasswordModule,
     RadioButtonModule,
-    DividerModule
+    DividerModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-  title: String = "Booking App";
+  title: String = 'Booking App';
   loginForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  errorMessage:string | null = null;
+  userLogin!: UserLogin;
+
+  constructor(private fb: FormBuilder, private authService: AuthService, private router:Router) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -50,9 +57,23 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['player'],
     });
   }
 
-  login(): void {}
+  login() {
+    if (this.loginForm.valid) {
+      this.userLogin = this.loginForm.value;
+      this.authService.login(this.userLogin).subscribe(
+        { next : (userData : any) => {
+          //userData.user==null ? this.errorMessage='Login failed. Please check your email and password.' :this.router.navigate(['/']);
+          if(this.authService.isLoggedIn()){
+            this.router.navigate(['/profile'])}
+            console.log(userData)
+        },
+        error : (err) => {
+          this.errorMessage = 'Login failed. Please check your email and password.'+err;
+        }}
+      );
+    }
+  }
 }

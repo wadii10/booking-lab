@@ -16,7 +16,9 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DividerModule } from 'primeng/divider';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { UserSignup } from '../../../models/User';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -32,31 +34,36 @@ import { RouterLink } from '@angular/router';
     FloatLabelModule,
     PasswordModule,
     RadioButtonModule,
-    DividerModule
+    DividerModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent implements OnInit {
-  title: String = "Booking App";
+  title: String = 'Booking App';
+
   signUpForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  errorMessage: string | null = null;
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
   }
 
   initForm(): void {
-    this.signUpForm = this.fb.group(
-      {
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', this.confirmPasswordValidator.bind(this)],
-        role: ['', Validators.required],
-      }
-    );
+    this.signUpForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', this.confirmPasswordValidator.bind(this)],
+      role: ['', Validators.required],
+    });
   }
 
   confirmPasswordValidator(control: FormControl): { [s: string]: boolean } {
@@ -68,5 +75,25 @@ export class RegisterComponent implements OnInit {
     return {};
   }
 
-  signUp(): void {}
+  signUp() {
+    if (this.signUpForm.valid) {
+      const { firstName, lastName, email, password, role } =
+        this.signUpForm.value;
+      const userSignUp: UserSignup = {
+        firstName,
+        lastName,
+        email,
+        password,
+        role,
+      };
+      this.authService.signUp(userSignUp).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.router.navigate(['/login']);
+        },
+        error: (err) => console.log(err),
+      });
+    }
+  }
+  
 }

@@ -3,6 +3,7 @@ import { RegisterComponent } from './shared/components/auth/register/register.co
 import { LoginComponent } from './shared/components/auth/login/login.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { HomeAdminComponent } from './features/admin/home-admin/home-admin.component';
+import { authGuard } from './shared/services/auth/auth/auth.guard';
 
 export const routes: Routes = [
   { path: 'login', pathMatch: 'full', component: LoginComponent },
@@ -19,6 +20,11 @@ export const routes: Routes = [
           ),
       },
     ],
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./shared/components/profile/profile.component').then( c => c.ProfileComponent),
+    canActivate: [authGuard]
   },
   {
     path: 'admin',
