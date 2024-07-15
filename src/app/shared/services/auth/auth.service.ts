@@ -13,7 +13,7 @@ export class AuthService {
 
   login(userLogin: UserLogin): Observable<any> {
     return this.httpClient
-      .post<any>(environment.baseApi + '/login', userLogin, {
+      .post<any>(environment.baseApi + '/user/login', userLogin, {
         headers: getHeaders(),
       })
       .pipe(
@@ -25,7 +25,7 @@ export class AuthService {
 
   signUp(userSignUp: UserSignup): Observable<any> {
     return this.httpClient.post<any>(
-      environment.baseApi + '/signUp',
+      environment.baseApi + '/user/signup',
       userSignUp
     );
   }

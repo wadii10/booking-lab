@@ -20,6 +20,8 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserLogin } from '../../../models/User';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
     PasswordModule,
     RadioButtonModule,
     DividerModule,
+    ToastModule
   ],
+  providers: [ MessageService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -67,8 +71,8 @@ export class LoginComponent implements OnInit {
         { next : (userData : any) => {
           //userData.user==null ? this.errorMessage='Login failed. Please check your email and password.' :this.router.navigate(['/']);
           if(this.authService.isLoggedIn()){
-            this.router.navigate(['/profile'])}
-            console.log(userData)
+            console.log(userData);
+            this.router.navigate([`/profile/${userData.id}`])}
         },
         error : (err) => {
           this.errorMessage = 'Login failed. Please check your email and password.'+err;

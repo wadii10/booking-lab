@@ -6,6 +6,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AvatarModule } from 'primeng/avatar';
+import { UserService } from '../../services/user/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -25,10 +27,13 @@ import { AvatarModule } from 'primeng/avatar';
 })
 export class ProfileComponent implements OnInit {
 
+  constructor(private fb: FormBuilder, private userService: UserService, private activatedRoute: ActivatedRoute) {}
+  
   signUpForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  id: number = this.activatedRoute.snapshot.params["id"];
 
   ngOnInit(): void {
+    this.getUserById();
     this.initForm();
   }
 
@@ -52,6 +57,17 @@ export class ProfileComponent implements OnInit {
       return { passwordMatch: true };
     }
     return {};
+  }
+
+  getUserById() {
+    this.userService.getUserById(this.id).subscribe({
+      next : (res) => {
+        console.log(res);
+      },
+      error : (err) => {
+        console.log(err);
+      }
+    })
   }
 
   update(): void {}

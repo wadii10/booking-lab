@@ -3,7 +3,6 @@ export interface UserSignup {
     lastName?: string,
     email?: string,
     password?:string,
-    role?:string,
 }
 
 export interface UserLogin {
