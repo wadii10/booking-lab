@@ -5,6 +5,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { BadgeModule } from 'primeng/badge';
 import { AvatarModule } from 'primeng/avatar';
 import { RippleModule } from 'primeng/ripple';
+import { WebSocketService } from '../../../shared/services/webSocket/web-socket.service';
 
 @Component({
   selector: 'app-header-admin',
@@ -20,8 +21,8 @@ import { RippleModule } from 'primeng/ripple';
   styleUrl: './header-admin.component.scss',
 })
 export class HeaderAdminComponent implements OnInit {
-  profileMenuItems : MenuItem[] | undefined;
-  mainMenuItems : MenuItem[] | undefined;
+  profileMenuItems: MenuItem[] | undefined;
+  mainMenuItems: MenuItem[] | undefined;
 
   ngOnInit() {
     this.mainMenuItems = [
@@ -74,9 +75,9 @@ export class HeaderAdminComponent implements OnInit {
         label: 'Contact',
         icon: 'pi pi-envelope',
         badge: '3',
-      }
+      },
     ];
-  
+
     this.profileMenuItems = [
       {
         label: 'Profile',
@@ -89,16 +90,18 @@ export class HeaderAdminComponent implements OnInit {
           {
             label: 'Billing',
             icon: 'pi pi-fw pi-file',
-          }
-        ]
+          },
+        ],
       },
       {
-        separator: true
+        separator: true,
       },
       {
         label: 'Quit',
         icon: 'pi pi-fw pi-sign-out',
-      }
+      },
     ];
+    
   }
+
 }

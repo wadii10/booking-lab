@@ -1,0 +1,27 @@
+<div class="col-12 md:col-6">
+<p-toast/>
+    <div class="card">
+        <h5>New Activity</h5>
+        <p-toolbar stylClass="mb-4">
+            <div class="grid">
+                <form [formGroup]="activityForm" (ngSubmit)="addActivity()">
+                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                        <label for="name">Activity Name</label>
+                        <input id="name" pInputText placeholder="Activity Name" formControlName="name">
+                    </div>
+                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                        <button
+                        type="submit"
+                        icon="pi pi-plus"
+                        pButton
+                        label="Add"
+                        [disabled]="activityForm.invalid"
+                      ></button>
+                    </div>
+                </form>
+            </div>
+        </p-toolbar>
+			
+    </div>
+
+</div>

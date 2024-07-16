@@ -8,7 +8,6 @@ import {
   FormBuilder,
 } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { CardModule } from 'primeng/card';
@@ -32,7 +31,6 @@ import { MessageService } from 'primeng/api';
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
-    HttpClientModule,
     CardModule,
     InputTextModule,
     ButtonModule,
@@ -51,7 +49,6 @@ export class RegisterComponent implements OnInit {
   title: String = 'Booking App';
 
   signUpForm!: FormGroup;
-  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,

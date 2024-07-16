@@ -26,7 +26,7 @@ export class ActivityService {
     return (this.httpClient.put<void>(`${environment.baseApi}/activity/${activity.id}`, activity))
   }
   //delete activity
-  deleteActivity(id: string): Observable<void> {
+  deleteActivity(id: number): Observable<void> {
     return this.httpClient.delete<void>(
       `${environment.baseApi}/activity/${id}`
     );

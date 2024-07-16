@@ -1,5 +1,6 @@
 export interface Activity {
-    id?:string,
-    name?:string,
-    logo?:string,
+  id?: number;
+  name?: string;
+  createdDate?: string;
+  lastUpdateDate?: string;
 }
