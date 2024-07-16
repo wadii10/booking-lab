@@ -21,9 +21,18 @@ export class ActivityService {
   allActivity(): Observable<Activity[]> {
     return this.httpClient.get<Activity[]>(environment.baseApi + '/activity');
   }
+  //get one activity
+  getOneActivity(activity: Activity): Observable<Activity> {
+    return this.httpClient.get<Activity>(
+      `${environment.baseApi}/activity/${activity.id}`
+    );
+  }
   //update activity
-  updateActivity(activity: Activity): Observable<void>{
-    return (this.httpClient.put<void>(`${environment.baseApi}/activity/${activity.id}`, activity))
+  updateActivity(activity: Activity): Observable<void> {
+    return this.httpClient.put<void>(
+      `${environment.baseApi}/activity/${activity.id}`,
+      activity
+    );
   }
   //delete activity
   deleteActivity(id: number): Observable<void> {

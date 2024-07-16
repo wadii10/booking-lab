@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Activity } from '../../../../shared/models/Activity';
-import { ActivityService } from '../../../../shared/services/activity/activity.service';
 import { ToastService } from '../../../../shared/services/toast/toast.service';
+import { StateService } from '../../../../shared/services/state/state.service';
 import { MessageService } from 'primeng/api';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { State } from '../../../../shared/models/State';
+import { CommonModule } from '@angular/common';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
@@ -12,7 +12,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-  selector: 'app-activity-form',
+  selector: 'app-state-form',
   standalone: true,
   imports: [
     CommonModule,
@@ -23,16 +23,16 @@ import { InputTextModule } from 'primeng/inputtext';
     FloatLabelModule,
     InputTextModule
   ],
-  providers: [ToastService, ActivityService, MessageService],
-  templateUrl: './activity-form.component.html',
-  styleUrl: './activity-form.component.scss'
+  providers: [ToastService, StateService, MessageService],
+  templateUrl: './state-form.component.html',
+  styleUrl: './state-form.component.scss'
 })
-export class ActivityFormComponent implements OnInit {
+export class StateFormComponent implements OnInit {
 
-  activityForm!: FormGroup;
+  stateForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private activityService: ActivityService,
+    private stateService: StateService,
     private toastService: ToastService
   ){}
 
@@ -41,18 +41,18 @@ export class ActivityFormComponent implements OnInit {
   }
 
   initForm(): void {
-    this.activityForm = this.fb.group({
+    this.stateForm = this.fb.group({
       name: ['', Validators.required]
     });
   }
 
-  addActivity() {
-    if (this.activityForm.valid) {
-      const { name } = this.activityForm.value;
-      const activity: Activity = { name };
-      this.activityService.saveActivity(activity).subscribe({
+  addState() {
+    if (this.stateForm.valid) {
+      const { name } = this.stateForm.value;
+      const state: State = { name };
+      this.stateService.saveState(state).subscribe({
         next: (data: any) => {
-          this.toastService.showSuccess("Success!", "Activity added");
+          this.toastService.showSuccess("Success!", "State added");
         },
         error: (err) => {
           this.toastService.showError("Error", err.error.message);

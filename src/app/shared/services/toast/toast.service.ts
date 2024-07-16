@@ -24,11 +24,11 @@ export class ToastService {
     });
   }
 
-  showInfo() {
+  showInfo(title: string, content: string) {
     this.messageService.add({
       severity: 'info',
-      summary: 'Info',
-      detail: 'Message Content',
+      summary: title,
+      detail: content,
     });
   }
 

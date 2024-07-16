@@ -98,7 +98,6 @@ export class RegisterComponent implements OnInit {
           }, 7000);
         },
         error: (err) => {
-          console.log(err);
           this.toastService.showError("Error", err.error.message);
         },
       });

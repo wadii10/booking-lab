@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
-import { DialogModule } from 'primeng/dialog';
 import { Table, TableModule } from 'primeng/table';
-import { Activity } from '../../../../shared/models/Activity';
-import { ActivityService } from '../../../../shared/services/activity/activity.service';
-import { ToastService } from '../../../../shared/services/toast/toast.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { ToastService } from '../../../../shared/services/toast/toast.service';
+import { StateService } from '../../../../shared/services/state/state.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { State } from '../../../../shared/models/State';
 
 @Component({
-  selector: 'app-list-activity',
+  selector: 'app-list-state',
   standalone: true,
   imports: [
     CommonModule,
@@ -30,45 +30,44 @@ import { ToastModule } from 'primeng/toast';
   ],
   providers: [
     ToastService,
-    ActivityService,
+    StateService,
     MessageService,
     ConfirmationService,
   ],
-  templateUrl: './list-activity.component.html',
-  styleUrl: './list-activity.component.scss',
+  templateUrl: './list-state.component.html',
+  styleUrl: './list-state.component.scss'
 })
-export class ListActivityComponent implements OnInit {
+export class ListStateComponent implements OnInit {
   constructor(
-    private activityService: ActivityService,
+    private stateService: StateService,
     private toastService: ToastService,
     private confirmationService: ConfirmationService
   ) {}
 
-  activityDialog: boolean = false;
+  stateDialog: boolean = false;
 
-  deleteActivityDialog: boolean = false;
+  deleteStateDialog: boolean = false;
 
-  activities: any[] = [];
+  states: State[] = [];
 
-  activity: Activity = {};
+  state: State = {};
 
   submitted: boolean = false;
 
   rowsPerPageOptions = [5, 10, 20];
 
-  cols: any[] = [{ field: 'activity', header: 'activity' }];
+  cols: any[] = [{ field: 'state', header: 'state' }];
 
   ngOnInit(): void {
     this.cols;
-    this.getActivities();
+    this.getStates();
   }
 
   // get all activity
-  getActivities() {
-    this.activityService.allActivity().subscribe({
+  getStates() {
+    this.stateService.allState().subscribe({
       next: (data: any) => {
-        this.activities = data;
-        console.log(data);
+        this.states = data;
       },
       error: (err) => {
         this.toastService.showError('Error', err.error.message);
@@ -77,14 +76,14 @@ export class ListActivityComponent implements OnInit {
   }
 
   //delete activity
-  deleteActivity(activity: Activity) {
-    this.deleteActivityDialog = true;
+  deleteState(state: State) {
+    this.deleteStateDialog = true;
   }
 
   confirmDelete(event: Event, id: number) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Do you want to delete this record?',
+      message: 'Do you want to delete this State?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-text',
@@ -92,10 +91,10 @@ export class ListActivityComponent implements OnInit {
       acceptIcon: 'none',
       rejectIcon: 'none',
       accept: () => {
-        this.activityService.deleteActivity(id).subscribe({
+        this.stateService.deleteState(id).subscribe({
           next: (data: any) => {
-            this.toastService.showSuccess('Successful', 'Activity Deleted');
-            this.getActivities();
+            this.toastService.showSuccess('Successful', 'State Deleted');
+            this.getStates();
           },
         });
       },
@@ -106,7 +105,7 @@ export class ListActivityComponent implements OnInit {
   }
 
   hideDialog() {
-    this.activityDialog = false;
+    this.stateDialog = false;
     this.submitted = false;
   }
 
@@ -114,23 +113,26 @@ export class ListActivityComponent implements OnInit {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
 
-  editActivity(activity: Activity) {
-    this.activityService.getOneActivity(activity).subscribe({
-      next: (data:Activity) => {
-        this.activity = data;
-        this.activityDialog = true;
+  editState(state: State) {
+    this.stateService.getOneState(state).subscribe({
+      next: (data:State) => {
+        this.state = data;
+        this.stateDialog = true;
       }
     })
   }
 
-  edit(activity:Activity) {
+  edit(state:State) {
     this.submitted = true;
-    this.activityService.updateActivity(activity).subscribe({
+    this.stateService.updateState(state).subscribe({
       next: (data: any) => {
-        this.activity = data;
-        this.activityDialog = false;
-        this.toastService.showSuccess('Successful', 'Activity Updated');
-        this.getActivities();
+        this.state = data;
+        this.stateDialog = false;
+        this.toastService.showSuccess('Successful', 'State Updated');
+        this.getStates();
+      }, error : (err) => {
+        this.stateDialog = false;
+        this.toastService.showError('Error', err.error.message);
       },
     });
   }

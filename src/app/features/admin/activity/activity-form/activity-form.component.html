@@ -1,27 +1,33 @@
-<div class="col-12 md:col-6">
+<div class="col-12 md:col-12">
 <p-toast/>
-    <div class="card">
+    <div class="card px-6 py-6 w-8">
         <h5>New Activity</h5>
-        <p-toolbar stylClass="mb-4">
-            <div class="grid">
-                <form [formGroup]="activityForm" (ngSubmit)="addActivity()">
-                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                        <label for="name">Activity Name</label>
-                        <input id="name" pInputText placeholder="Activity Name" formControlName="name">
-                    </div>
-                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                        <button
-                        type="submit"
-                        icon="pi pi-plus"
-                        pButton
-                        label="Add"
-                        [disabled]="activityForm.invalid"
-                      ></button>
-                    </div>
-                </form>
-            </div>
+        <p-toolbar stylClass="mb-6">
+            <ng-template pTemplate="left">
+                <div class="my-2">
+                    
+                            <form [formGroup]="activityForm" (ngSubmit)="addActivity()">
+                                <div class="flex flex-row gap-2">
+                                    <p-floatLabel>
+                                        <input id="activityName" type="text" pInputText formControlName="name"/>
+                                        <label for="activityName">Activity Name</label>
+                                    </p-floatLabel>
+                                    
+                                    <button
+                                    type="submit"
+                                    icon="pi pi-plus"
+                                    pButton
+                                    label="Add"
+                                    [disabled]="activityForm.invalid"
+                                  ></button>
+                                </div>
+                                
+                                
+                            </form>
+                      
+                </div>
+            </ng-template>
         </p-toolbar>
-			
     </div>
 
 </div>
