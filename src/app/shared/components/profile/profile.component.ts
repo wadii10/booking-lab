@@ -8,6 +8,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { AvatarModule } from 'primeng/avatar';
 import { UserService } from '../../services/user/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserProfile } from '../../models/User';
 
 @Component({
   selector: 'app-profile',
@@ -29,8 +30,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private userService: UserService, private activatedRoute: ActivatedRoute) {}
   
-  signUpForm!: FormGroup;
+  updateForm!: FormGroup;
   id: number = this.activatedRoute.snapshot.params["id"];
+  userProfile!: UserProfile;
 
   ngOnInit(): void {
     this.getUserById();
@@ -38,7 +40,7 @@ export class ProfileComponent implements OnInit {
   }
 
   initForm(): void {
-    this.signUpForm = this.fb.group(
+    this.updateForm = this.fb.group(
       {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
@@ -53,7 +55,7 @@ export class ProfileComponent implements OnInit {
   confirmPasswordValidator(control: FormControl): { [s: string]: boolean } {
     if (!control.value) {
       return { required: true };
-    } else if (control.value !== this.signUpForm.get('password')?.value) {
+    } else if (control.value !== this.updateForm.get('password')?.value) {
       return { passwordMatch: true };
     }
     return {};
@@ -62,10 +64,11 @@ export class ProfileComponent implements OnInit {
   getUserById() {
     this.userService.getUserById(this.id).subscribe({
       next : (res) => {
-        console.log(res);
+        this.userProfile = res;
+        this.updateForm.patchValue(this.userProfile);
       },
       error : (err) => {
-        console.log(err);
+        
       }
     })
   }

@@ -12,7 +12,7 @@ export class UserService {
 
   //get user by id
   getUserById(id:number): Observable<any> {
-    return this.httpClient.get<any>(`${environment.baseApi}/user/${id}`);
+    return this.httpClient.get<any>(`${environment.baseApi}/user/profile/${id}`);
   }
   
 }

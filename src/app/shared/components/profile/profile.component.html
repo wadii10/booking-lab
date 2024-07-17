@@ -1,8 +1,8 @@
 <div class="profile">
-  <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
-    <div class="flex flex-column align-items-center justify-content-center">
-     
+  <div *ngIf="userProfile" class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex w-full flex-column align-items-center justify-content-center">
       <div
+      class="w-5"
         style="
           border-radius: 56px;
           padding: 0.3rem;
@@ -14,16 +14,16 @@
         "
       >
       <div
-      class="w-full surface-card py-8 px-5 sm:px-8"
+      class="surface-card py-8 px-5 sm:px-8"
       style="border-radius: 53px"
       >
       <div class="text-center mb-5">
-            <img src="assets/demo/images/activities/football.jpeg" alt="Sakai logo" class="mb-4 w-10rem flex-shrink-0" style="border-radius: 340%;">
-            <div class="text-900 text-3xl font-medium mb-3">Welcome, Isabel!</div>
+            <img src="assets/demo/images/activities/football.jpeg" alt="logo" class="mb-4 w-10rem flex-shrink-0" style="border-radius: 340%;">
+            <div class="text-900 text-3xl font-medium mb-3">Welcome, {{userProfile.firstName}}</div>
           </div>
   
           <div>
-            <form [formGroup]="signUpForm" (ngSubmit)="update()">
+            <form [formGroup]="updateForm" (ngSubmit)="update()">
               <div class="p-fluid">
                 <div class="grid justify-content-center">
                   <div class="col-12 md:col-4">
@@ -59,9 +59,9 @@
                       <input id="email" type="email" pInputText formControlName="email" />
                       <div
                       *ngIf="
-                        signUpForm.controls['email'].invalid &&
-                        (signUpForm.controls['email'].dirty ||
-                          signUpForm.controls['email'].touched)
+                      updateForm.controls['email'].invalid &&
+                        (updateForm.controls['email'].dirty ||
+                        updateForm.controls['email'].touched)
                           "
                       class="p-error"
                       >
@@ -82,9 +82,9 @@
                         ></p-password>
                         <div
                         *ngIf="
-                          signUpForm.controls['password'].invalid &&
-                          (signUpForm.controls['password'].dirty ||
-                            signUpForm.controls['password'].touched)
+                        updateForm.controls['password'].invalid &&
+                          (updateForm.controls['password'].dirty ||
+                          updateForm.controls['password'].touched)
                             "
                         class="p-error"
                         >
@@ -103,16 +103,16 @@
                       ></p-password>
                       <div
                         *ngIf="
-                          signUpForm.controls['confirmPassword'].invalid &&
-                          (signUpForm.controls['confirmPassword'].dirty ||
-                            signUpForm.controls['confirmPassword'].touched)
+                        updateForm.controls['confirmPassword'].invalid &&
+                          (updateForm.controls['confirmPassword'].dirty ||
+                          updateForm.controls['confirmPassword'].touched)
                         "
                         class="p-error"
                       >
                         Confirm password is required.
                       </div>
                       <div
-                        *ngIf="signUpForm.get('confirmPassword')?.errors?.['passwordMatch']"
+                        *ngIf="updateForm.get('confirmPassword')?.errors?.['passwordMatch']"
                         class="p-error"
                       >
                         Passwords do not match.
@@ -127,7 +127,7 @@
                         type="submit"
                         pButton
                         label="Update"
-                        [disabled]="signUpForm.invalid"
+                        [disabled]="updateForm.invalid"
                       ></button>
                     </div>
                   </div>
