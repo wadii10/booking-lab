@@ -71,7 +71,6 @@ export class LoginComponent implements OnInit {
         { next : (userData : any) => {
           //userData.user==null ? this.errorMessage='Login failed. Please check your email and password.' :this.router.navigate(['/']);
           if(this.authService.isLoggedIn()){
-            console.log(userData);
             this.router.navigate([`/profile/${userData.id}`])}
         },
         error : (err) => {

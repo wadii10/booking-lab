@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeBodyComponent } from '../home-body/home-body.component';
 
 const routes: Routes = [   
   {
@@ -15,6 +14,10 @@ const routes: Routes = [
     path:'become-partner',
     loadComponent: () => import('../../../features/owner/company-form/company-form.component').then(c => c.CompanyFormComponent)
    },
+   {
+    path: 'search-results',
+    loadComponent: () => import('../../../features/user/search-results/search-results.component').then( c => c.SearchResultsComponent)
+   }
 ];
 
 @NgModule({

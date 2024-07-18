@@ -34,7 +34,7 @@ export class SearchResultsComponent implements OnInit {
           },
           error => {
             console.error('Error fetching search results', error);
-            this.loading = false;
+            this.loading = true;
           }
         );
       }

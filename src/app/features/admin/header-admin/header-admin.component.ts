@@ -5,7 +5,6 @@ import { MenubarModule } from 'primeng/menubar';
 import { BadgeModule } from 'primeng/badge';
 import { AvatarModule } from 'primeng/avatar';
 import { RippleModule } from 'primeng/ripple';
-import { WebSocketService } from '../../../shared/services/webSocket/web-socket.service';
 
 @Component({
   selector: 'app-header-admin',
@@ -101,7 +100,5 @@ export class HeaderAdminComponent implements OnInit {
         icon: 'pi pi-fw pi-sign-out',
       },
     ];
-    
   }
-
 }

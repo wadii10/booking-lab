@@ -6,9 +6,10 @@
           <label for="state">State</label>
           <p-dropdown
             id="state"
+            [options]="states"
             formControlName="state"
-            [options]="dropdownItems"
             optionLabel="name"
+            optionValue="name"
           ></p-dropdown>
         </div>
 
@@ -16,9 +17,10 @@
           <label for="activity">Activities</label>
           <p-dropdown
             id="activity"
-            [options]="dropdownItems"
-            optionLabel="name"
+            [options]="activities"
             formControlName="activity"
+            optionLabel="name"
+            optionValue="name"
           ></p-dropdown>
         </div>
 
@@ -38,7 +40,7 @@
               type="submit"
               label="Search"
               icon="pi pi-search"
-              [loading]="loading[0]"
+              [loading]="loading"
             />
           </div>
         

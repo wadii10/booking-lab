@@ -1,96 +1,157 @@
-<div class="p-2">
+<p-toast />
+<div class="card my-4 m-2 w-8 p-6 py-6">
+  <h5>New Activity</h5>
+  <p-toolbar class="w-10">
+    <ng-template pTemplate="left">
+      <div class="my-2">
+        <form [formGroup]="activityForm" (ngSubmit)="addActivity()">
+          <div class="flex flex-row gap-2">
+            <p-floatLabel>
+              <input
+                id="activityName"
+                type="text"
+                pInputText
+                formControlName="name"
+              />
+              <label for="activityName">Activity Name</label>
+            </p-floatLabel>
 
-    <p-toast />
-    <div class="card flex-column w-10">
-      <h5>New Activity</h5>
-      <p-toolbar class="w-10">
-        <ng-template pTemplate="left">
-          <div class="my-2">
-            <form [formGroup]="activityForm" (ngSubmit)="addActivity()">
-              <div class="flex flex-row gap-2">
-                <p-floatLabel>
-                  <input
-                    id="activityName"
-                    type="text"
-                    pInputText
-                    formControlName="name"
-                  />
-                  <label for="activityName">Activity Name</label>
-                </p-floatLabel>
-    
-                <button
-                  type="submit"
-                  icon="pi pi-plus"
-                  pButton
-                  label="Add"
-                  [disabled]="activityForm.invalid"
-                ></button>
-              </div>
-            </form>
+            <button
+              type="submit"
+              icon="pi pi-plus"
+              pButton
+              label="Add"
+              [disabled]="activityForm.invalid"
+            ></button>
           </div>
-        </ng-template>
-      </p-toolbar>
-    </div>
-    
-    <p-divider></p-divider>
-    
-    <div class="col-12 md:col-12 block">
-        <div class="card px-6 py-6 w-10">
-            <p-table #dt [value]="activities" [columns]="cols" responsiveLayout="scroll" [rows]="5" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[5,10,15]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"  selectionMode="multiple" [rowHover]="true" dataKey="id">
-            <ng-template pTemplate="caption">
-            <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                <h5 class="m-0">Manage Activity</h5>
-                <span class="block mt-2 md:mt-0 p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
-                </span>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-                <th></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-activity>
-            <tr>
-                <td style="width:10%; min-width:8rem;">
-                    <span class="p-column-title">Name</span>
-                    {{activity.name}}
-                </td>
-                
-                <td>
-                    <div class="flex">
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-secondary mr-2" (click)="editActivity(activity)"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirmDelete($event, activity.id)"></button>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-    
-    <p-confirmDialog />
-    <p-dialog [(visible)]="activityDialog" [style]="{width: '450px'}" header="Activity Details" [modal]="true" class="p-fluid">
-        <ng-template pTemplate="content">
-            
-            <div class="field">
-                <label for="name">Name</label>
-                <input type="text" pInputText id="name" [(ngModel)]="activity.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !activity.name}"/>
-                <small class="ng-dirty ng-invalid" *ngIf="submitted && !activity.name">Name is required.</small>
-            </div>
-            
-        </ng-template>
-        
-        <ng-template pTemplate="footer">
-            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="edit(activity)"></button>
-        </ng-template>
-    </p-dialog>
-    
-    <p-toast/>
-    
-    </div>
-    </div>
-    
+        </form>
+      </div>
+    </ng-template>
+  </p-toolbar>
+</div>
 
+<p-divider></p-divider>
+
+<div class="card my-4 m-2 w-8 p-6 py-6">
+  <p-table
+    #dt
+    [value]="activities"
+    [columns]="cols"
+    responsiveLayout="scroll"
+    [rows]="5"
+    [globalFilterFields]="[
+      'name',
+      'country.name',
+      'representative.name',
+      'status'
+    ]"
+    [paginator]="true"
+    [rowsPerPageOptions]="[5, 10, 15]"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    selectionMode="multiple"
+    [rowHover]="true"
+    dataKey="id"
+  >
+    <ng-template pTemplate="caption">
+      <div
+        class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+      >
+        <h5 class="m-0">Manage Activity</h5>
+        <span class="block mt-2 md:mt-0 p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="onGlobalFilter(dt, $event)"
+            placeholder="Search..."
+            class="w-full sm:w-auto"
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">
+          Name <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-activity>
+      <tr>
+        <td style="width: 10%; min-width: 8rem">
+          <span class="p-column-title">Name</span>
+          {{ activity.name }}
+        </td>
+
+        <td>
+          <div class="flex">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-secondary mr-2"
+              (click)="editActivity(activity)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger"
+              (click)="confirmDelete($event, activity.id)"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-confirmDialog />
+  <p-dialog
+    [(visible)]="activityDialog"
+    [style]="{ width: '450px' }"
+    header="Activity Details"
+    [modal]="true"
+    class="p-fluid"
+  >
+    <ng-template pTemplate="content">
+      <div class="field">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          pInputText
+          id="name"
+          [(ngModel)]="activity.name"
+          required
+          autofocus
+          [ngClass]="{ 'ng-invalid ng-dirty': submitted && !activity.name }"
+        />
+        <small class="ng-dirty ng-invalid" *ngIf="submitted && !activity.name"
+          >Name is required.</small
+        >
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        pRipple
+        label="Cancel"
+        icon="pi pi-times"
+        class="p-button-text"
+        (click)="hideDialog()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Save"
+        icon="pi pi-check"
+        class="p-button-text"
+        (click)="edit(activity)"
+      ></button>
+    </ng-template>
+  </p-dialog>
+
+  <p-toast />
 </div>

@@ -1,20 +1,35 @@
 import { Injectable } from '@angular/core';
+import SockJS from 'sockjs-client'
+import * as Stomp from 'stompjs';
+import { environment } from '../../../../environments/environments';
+import { Client } from '@stomp/stompjs';
+import { Subject } from 'rxjs';
 
-var SockJs = require('sockjs-client');
-var Stomp = require('stompjs');
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
-  constructor() {}
 
-  // Open connection with the back-end socket
-  public connect() {
-    let socket = new SockJs(`http://localhost:8080/socket`);
+  private socket: WebSocket;
 
-    let stompClient = Stomp.over(socket);
+  constructor() {
+    this.socket = new WebSocket(environment.websocketUrl);
+    
+    this.socket.onopen = (event) => {
+      console.log('WebSocket is open now.');
+    };
 
-    return stompClient;
+    this.socket.onmessage = (event) => {
+      console.log('WebSocket message received:', event.data);
+    };
+
+    this.socket.onclose = (event) => {
+      console.log('WebSocket is closed now.');
+    };
+
+    this.socket.onerror = (error) => {
+      console.error('WebSocket error observed:', error);
+    };
   }
 }

@@ -23,11 +23,12 @@ import { UserProfile } from '../../models/User';
     AvatarModule,
     ReactiveFormsModule
   ],
+  providers:[UserService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent implements OnInit {
-
+  
   constructor(private fb: FormBuilder, private userService: UserService, private activatedRoute: ActivatedRoute) {}
   
   updateForm!: FormGroup;

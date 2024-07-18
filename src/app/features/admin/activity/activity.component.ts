@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivityFormComponent } from '../activity-form/activity-form.component';
-import { ListActivityComponent } from '../list-activity/list-activity.component';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -55,7 +53,7 @@ export class ActivityComponent implements OnInit {
 
   deleteActivityDialog: boolean = false;
 
-  activities: any[] = [];
+  activities: Activity[] = [];
 
   activity: Activity = {};
 
@@ -85,6 +83,7 @@ export class ActivityComponent implements OnInit {
         next: (data: any) => {
           this.toastService.showSuccess("Success!", "Activity added");
           this.activityForm.reset();
+          this.getActivities();
         },
         error: (err) => {
           this.toastService.showError("Error", err.error.message);
@@ -98,7 +97,6 @@ export class ActivityComponent implements OnInit {
     this.activityService.allActivity().subscribe({
       next: (data: any) => {
         this.activities = data;
-        console.log(data);
       },
       error: (err) => {
         this.toastService.showError('Error', err.error.message);
