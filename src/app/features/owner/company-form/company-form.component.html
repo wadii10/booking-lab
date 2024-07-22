@@ -1,4 +1,5 @@
 <div class="surface-0 flex flex-column justify-content-center" >
+  <p-toast />
   <div class="mx-4 py-8 md:mx-8 mt-4 md:mt-6 z-2">
     <h1 class="text-6xl font-bold text-gray-900 line-height-2">
       <span class="font-light block">BECOME PARTNER</span>Booking App
@@ -35,15 +36,51 @@
             </div>
             <div class="field md:col-6">
               <label for="companyZip">Zip Code</label>
-              <p-inputNumber mode="decimal" id="companyZip" formControlName="companyZip" [useGrouping]="false"/>
+              <p-inputNumber mode="decimal" id="companyZip" formControlName="zip" [useGrouping]="false"/>
+            </div>
+            <div class="field md:col-6">
+              <label for="password">Password</label>
+              <p-password formControlName="password" [feedback]="false" [toggleMask]="true"/>
+              <div
+                *ngIf="
+                companyForm.controls['password'].invalid &&
+                  (companyForm.controls['password'].dirty ||
+                  companyForm.controls['password'].touched)
+                "
+                class="p-error"
+              >
+                Password must be at least 6 characters long.
+              </div>
+            </div>
+            <div class="field md:col-6">
+              <label for="confirmPassword">Confirm Password</label>
+              <p-password id="confirmPassword" formControlName="confirmPassword" [feedback]="false" [toggleMask]="true"/>
+              <div
+                    *ngIf="
+                      companyForm.controls['confirmPassword'].invalid &&
+                      (companyForm.controls['confirmPassword'].dirty ||
+                        companyForm.controls['confirmPassword'].touched)
+                    "
+                    class="p-error"
+                  >
+                    Confirm password is required.
+                  </div>
+                  <div
+                    *ngIf="companyForm.get('confirmPassword')?.errors?.['passwordMatch']"
+                    class="p-error"
+                  >
+                    Passwords do not match.
+                  </div>
             </div>
             <div class="field md:col-8">
               <label for="address">Address</label>
-              <input pInputTextarea id="address" rows="4" formControlName="companyAdresse" />
+              <input pInputTextarea id="address" rows="4" formControlName="detail" />
             </div>
             <div class="field md:col-4">
               <label for="state">State</label>
-              <p-dropdown id optionLabel="name" formControlName="companyState" ></p-dropdown>
+              <p-dropdown id="state" formControlName="state" [options]="states"
+              optionLabel="name"
+              optionValue="id" ></p-dropdown>
             </div>
           </div>
           <h5>Contact Company</h5>

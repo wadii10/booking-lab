@@ -1,14 +1,10 @@
-import { Activity } from "./Activity";
-import { Adresse } from "./Adresse";
-import { State } from "./State";
+import { Activity } from './Activity';
 
 export interface Stadium {
-    id?: number,
-    name?: string,
-    activity?: Activity,
-    state?: State,
-    address?: Adresse,
-    photos?: string[],
-    capacity?: string,
-    surface?: string,
+  id?: number;
+  name?: string;
+  activity?: Activity;
+  photos?: string[];
+  capacity?: string;
+  surface?: string;
 }

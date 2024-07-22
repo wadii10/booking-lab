@@ -34,7 +34,7 @@ export class SearchFormComponent {
   states: State[] = [];
   activities: Activity[] = [];
 
-  defaultState = { name: 'Sfax', code: 'Option 1' };
+  defaultState = this.states[0];
   todayDate = new Date();
 
   loading = false;
