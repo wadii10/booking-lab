@@ -2,9 +2,9 @@ import { Activity } from './Activity';
 
 export interface Stadium {
   id?: number;
-  name?: string;
+  nameStadium?: string;
   activity?: Activity;
-  photos?: string[];
-  capacity?: string;
-  surface?: string;
+  //photos?: string[];
+  capacity?: number;
+  company_id?: number;
 }

@@ -105,7 +105,6 @@ export class CompanyFormComponent implements OnInit {
   send(): void {
 	if (this.companyForm.valid) {
 		const { companyName, companyEmail, companyPhone, password, detail, zip, state } = this.companyForm.value;
-		console.log(this.companyForm.value);
 		this.companyToSave = {
 			companyName,
 			companyEmail,
@@ -114,7 +113,6 @@ export class CompanyFormComponent implements OnInit {
 			address:{detail, zip},
 			state:{id:state}
 		}
-		console.log(this.companyToSave);
 		this.authService.signUpCompany(this.companyToSave).subscribe({
 			next: (data: any) => {
 			  this.toastService.showSuccess("Company Registered", "Please check your Email.");

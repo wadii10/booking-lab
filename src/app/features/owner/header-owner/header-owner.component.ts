@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { MenubarModule } from 'primeng/menubar';
-import { BadgeModule } from 'primeng/badge';
 import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
+import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
 
 @Component({
-  selector: 'app-header-admin',
+  selector: 'app-header-owner',
   standalone: true,
   imports: [
     CommonModule,
@@ -16,10 +16,11 @@ import { RippleModule } from 'primeng/ripple';
     AvatarModule,
     RippleModule,
   ],
-  templateUrl: './header-admin.component.html',
-  styleUrl: './header-admin.component.scss',
+  templateUrl: './header-owner.component.html',
+  styleUrl: './header-owner.component.scss'
 })
-export class HeaderAdminComponent implements OnInit {
+export class HeaderOwnerComponent {
+
   profileMenuItems: MenuItem[] | undefined;
   mainMenuItems: MenuItem[] | undefined;
 
@@ -30,11 +31,21 @@ export class HeaderAdminComponent implements OnInit {
         icon: 'pi pi-home',
       },
       {
-        label: 'State',
+        label: 'Stadium',
         icon: 'pi pi-star',
+        items: [
+          {
+            label: 'Add Stadium',
+            icon: 'pi pi-bolt',
+          },
+          {
+            label: 'List Stadium',
+            icon: 'pi pi-bolt',
+          },
+        ]
       },
       {
-        label: 'Activity',
+        label: 'Reservation',
         icon: 'pi pi-envelope',
         badge: '3',
       },
@@ -101,4 +112,5 @@ export class HeaderAdminComponent implements OnInit {
       },
     ];
   }
+
 }

@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'activity',
-    loadComponent: () => import('../activity/activity.component').then( c => c.ActivityComponent)
+    loadComponent: () => import('./activity/activity.component').then( c => c.ActivityComponent)
   },
   {
     path: 'state',
-    loadComponent: () => import('../state/state.component').then( c => c.StateComponent)
+    loadComponent: () => import('./state/state.component').then( c => c.StateComponent)
   }
 ];
 

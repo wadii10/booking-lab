@@ -17,7 +17,11 @@ const routes: Routes = [
    {
     path: 'search-results',
     loadComponent: () => import('../../../features/user/search-results/search-results.component').then( c => c.SearchResultsComponent)
-   }
+   },
+   {
+    path: 'profile/:id',
+    loadComponent: () => import('../profile/profile.component').then( c => c.ProfileComponent)
+  },
 ];
 
 @NgModule({

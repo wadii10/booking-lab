@@ -3,7 +3,7 @@ import { RegisterComponent } from './shared/components/auth/register/register.co
 import { LoginComponent } from './shared/components/auth/login/login.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { HomeAdminComponent } from './features/admin/home-admin/home-admin.component';
-import { authGuard } from './shared/services/auth/auth/auth.guard';
+import { HomeOwnerComponent } from './features/owner/home-owner/home-owner.component';
 
 export const routes: Routes = [
   { path: 'login', pathMatch: 'full', component: LoginComponent },
@@ -22,19 +22,19 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'profile/:id',
-    loadComponent: () => import('./shared/components/profile/profile.component').then( c => c.ProfileComponent),
-    canActivate: [authGuard]
-  },
-  {
     path: 'admin',
     component: HomeAdminComponent,
     children:[
       {
         path:'',
-        loadChildren: () => import('./features/admin/admin/admin.module').then( m => m.AdminModule)
+        loadChildren: () => import('./features/admin/admin.module').then( m => m.AdminModule)
       }
     ]
+  },
+  {
+    path: 'owner',
+    component: HomeOwnerComponent,
+    loadChildren: () => import('./features/owner/owner.module').then( m => m.OwnerModule)
   },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
