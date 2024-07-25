@@ -5,6 +5,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { BadgeModule } from 'primeng/badge';
 import { AvatarModule } from 'primeng/avatar';
 import { RippleModule } from 'primeng/ripple';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-admin',
@@ -23,20 +24,25 @@ export class HeaderAdminComponent implements OnInit {
   profileMenuItems: MenuItem[] | undefined;
   mainMenuItems: MenuItem[] | undefined;
 
+  constructor(private router:Router) {}
+
   ngOnInit() {
     this.mainMenuItems = [
       {
         label: 'Home',
         icon: 'pi pi-home',
+        command: () => this.router.navigate(['admin'])
       },
       {
         label: 'State',
         icon: 'pi pi-star',
+        command: () => this.router.navigate(['admin/state'])
       },
       {
         label: 'Activity',
         icon: 'pi pi-envelope',
-        badge: '3',
+        command: () => this.router.navigate(['admin/activity'])
+        //badge: '3',
       },
       {
         label: 'Projects',

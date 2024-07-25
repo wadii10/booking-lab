@@ -25,8 +25,9 @@ import { ToastService } from '../../../shared/services/toast/toast.service';
 import { MessageService } from 'primeng/api';
 import { Address } from '../../../shared/models/Address';
 import { Company } from '../../../shared/models/Company';
-import { AuthService } from '../../../shared/services/auth/auth.service';
+
 import { ToastModule } from 'primeng/toast';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-company-form',
@@ -47,15 +48,19 @@ import { ToastModule } from 'primeng/toast';
     InputNumberModule,
     ButtonModule,
     PasswordModule,
-	ToastModule
+    ToastModule,
   ],
   providers: [StateService, ToastService, MessageService, AuthService],
   templateUrl: './company-form.component.html',
   styleUrl: './company-form.component.scss',
 })
 export class CompanyFormComponent implements OnInit {
-
-  constructor(private fb: FormBuilder, private authService:AuthService, private stateService: StateService, private toastService:ToastService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private stateService: StateService,
+    private toastService: ToastService
+  ) {}
 
   companyForm!: FormGroup;
   states!: State[];
@@ -64,7 +69,7 @@ export class CompanyFormComponent implements OnInit {
   companyToSave!: Company;
 
   ngOnInit(): void {
-	this.getStates();
+    this.getStates();
     this.initForm();
   }
 
@@ -73,10 +78,12 @@ export class CompanyFormComponent implements OnInit {
       companyName: ['', Validators.required],
       companyEmail: ['', [Validators.required, Validators.email]],
       companyPhone: [null, [Validators.required, Validators.minLength(8)]],
-	  password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', this.confirmPasswordValidator.bind(this)],
       detail: ['', Validators.required],
       zip: [null, Validators.required],
+      longitude: [null, Validators.required],
+      latitude: [null, Validators.required],
       state: ['', Validators.required],
     });
   }
@@ -103,26 +110,38 @@ export class CompanyFormComponent implements OnInit {
   }
 
   send(): void {
-	if (this.companyForm.valid) {
-		const { companyName, companyEmail, companyPhone, password, detail, zip, state } = this.companyForm.value;
-		this.companyToSave = {
-			companyName,
-			companyEmail,
-			companyPhone,
-			password,
-			address:{detail, zip},
-			state:{id:state}
-		}
-		this.authService.signUpCompany(this.companyToSave).subscribe({
-			next: (data: any) => {
-			  this.toastService.showSuccess("Company Registered", "Please check your Email.");
-			  this.companyForm.reset();
-			},
-			error: (err) => {
-			  this.toastService.showError("Error", err.error.message);
-			},
-		  }
-		)
-	}
+    if (this.companyForm.valid) {
+      const {
+        companyName,
+        companyEmail,
+        companyPhone,
+        password,
+        detail,
+        zip,
+        longitude,
+        latitude,
+        state,
+      } = this.companyForm.value;
+      this.companyToSave = {
+        companyName,
+        companyEmail,
+        companyPhone,
+        password,
+        address: { detail, zip, longitude, latitude },
+        state: { id: state },
+      };
+      this.authService.signUpCompany(this.companyToSave).subscribe({
+        next: (data: any) => {
+          this.toastService.showSuccess(
+            'Company Registered',
+            'Please check your Email.'
+          );
+          this.companyForm.reset();
+        },
+        error: (err) => {
+          this.toastService.showError('Error', err.error.message);
+        },
+      });
+    }
   }
 }

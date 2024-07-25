@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { Activity } from './Activity';
 
 export interface Stadium {
@@ -7,4 +8,6 @@ export interface Stadium {
   //photos?: string[];
   capacity?: number;
   company_id?: number;
+  startTime?: Time;
+  endTime?: Time;
 }

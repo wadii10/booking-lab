@@ -1,10 +1,9 @@
-<div class="surface-0 flex flex-column justify-content-center" >
+<div class="surface-0 flex flex-column justify-content-center">
   <p-toast />
   <div class="mx-4 py-8 md:mx-8 mt-4 md:mt-6 z-2">
     <h1 class="text-6xl font-bold text-gray-900 line-height-2">
       <span class="font-light block">BECOME PARTNER</span>Booking App
     </h1>
-    
   </div>
 
   <div class="company">
@@ -32,20 +31,141 @@
           <div class="p-fluid grid">
             <div class="field md:col-6">
               <label for="companyName">Company Name</label>
-              <input pInputText placeholder="Company Name" id="companyName" formControlName="companyName" />
+              <input
+                pInputText
+                placeholder="Company Name"
+                id="companyName"
+                formControlName="companyName"
+              />
+              <div
+                *ngIf="
+                  companyForm.controls['companyName'].invalid &&
+                  (companyForm.controls['companyName'].dirty ||
+                    companyForm.controls['companyName'].touched)
+                "
+                class="p-error"
+              >
+                Name Company is required.
+              </div>
             </div>
             <div class="field md:col-6">
+              <label for="email">Email</label>
+              <input
+                pInputText
+                id="email"
+                type="email"
+                placeholder="Email"
+                formControlName="companyEmail"
+              />
+              <div
+                *ngIf="
+                  companyForm.controls['companyEmail'].invalid &&
+                  (companyForm.controls['companyEmail'].dirty ||
+                    companyForm.controls['companyEmail'].touched)
+                "
+                class="p-error"
+              >
+                Email is required.
+              </div>
+            </div>
+            <div class="field md:col-8">
+              <label for="address">Address</label>
+              <input
+                placeholder="Address"
+                pInputTextarea
+                id="address"
+                rows="4"
+                formControlName="detail"
+              />
+              <div
+                *ngIf="
+                  companyForm.controls['detail'].invalid &&
+                  (companyForm.controls['detail'].dirty ||
+                    companyForm.controls['detail'].touched)
+                "
+                class="p-error"
+              >
+                Address is required.
+              </div>
+            </div>
+            <div class="field md:col-4">
+              <label for="state">State</label>
+              <p-dropdown
+                id="state"
+                formControlName="state"
+                [options]="states"
+                optionLabel="name"
+                optionValue="id"
+              ></p-dropdown>
+              <div
+                *ngIf="
+                  companyForm.controls['state'].invalid &&
+                  (companyForm.controls['state'].dirty ||
+                    companyForm.controls['state'].touched)
+                "
+                class="p-error"
+              >
+                State is required.
+              </div>
+            </div>
+            <div class="field md:col-3">
+              <label for="phone">Phone</label>
+              <p-inputNumber
+                mode="decimal"
+                id="phone"
+                formControlName="companyPhone"
+                [useGrouping]="false"
+              />
+              <div
+                *ngIf="
+                  companyForm.controls['companyPhone'].invalid &&
+                  (companyForm.controls['companyPhone'].dirty ||
+                    companyForm.controls['companyPhone'].touched)
+                "
+                class="p-error"
+              >
+                Phone is required.
+              </div>
+            </div>
+            <div class="field md:col-3">
               <label for="companyZip">Zip Code</label>
-              <p-inputNumber mode="decimal" id="companyZip" formControlName="zip" [useGrouping]="false"/>
+              <p-inputNumber
+                mode="decimal"
+                id="companyZip"
+                formControlName="zip"
+                [useGrouping]="false"
+              />
+            </div>
+            <div class="field md:col-3">
+              <label for="latitude">Latitude</label>
+              <p-inputNumber
+                mode="decimal"
+                id="latitude"
+                formControlName="latitude"
+                [useGrouping]="false"
+              />
+            </div>
+            <div class="field md:col-3">
+              <label for="longitude">Longitude</label>
+              <p-inputNumber
+                mode="decimal"
+                id="longitude"
+                formControlName="longitude"
+                [useGrouping]="false"
+              />
             </div>
             <div class="field md:col-6">
               <label for="password">Password</label>
-              <p-password formControlName="password" [feedback]="false" [toggleMask]="true"/>
+              <p-password
+                formControlName="password"
+                [feedback]="false"
+                [toggleMask]="true"
+              />
               <div
                 *ngIf="
-                companyForm.controls['password'].invalid &&
+                  companyForm.controls['password'].invalid &&
                   (companyForm.controls['password'].dirty ||
-                  companyForm.controls['password'].touched)
+                    companyForm.controls['password'].touched)
                 "
                 class="p-error"
               >
@@ -54,49 +174,36 @@
             </div>
             <div class="field md:col-6">
               <label for="confirmPassword">Confirm Password</label>
-              <p-password id="confirmPassword" formControlName="confirmPassword" [feedback]="false" [toggleMask]="true"/>
+              <p-password
+                id="confirmPassword"
+                formControlName="confirmPassword"
+                [feedback]="false"
+                [toggleMask]="true"
+              />
               <div
-                    *ngIf="
-                      companyForm.controls['confirmPassword'].invalid &&
-                      (companyForm.controls['confirmPassword'].dirty ||
-                        companyForm.controls['confirmPassword'].touched)
-                    "
-                    class="p-error"
-                  >
-                    Confirm password is required.
-                  </div>
-                  <div
-                    *ngIf="companyForm.get('confirmPassword')?.errors?.['passwordMatch']"
-                    class="p-error"
-                  >
-                    Passwords do not match.
-                  </div>
-            </div>
-            <div class="field md:col-8">
-              <label for="address">Address</label>
-              <input pInputTextarea id="address" rows="4" formControlName="detail" />
-            </div>
-            <div class="field md:col-4">
-              <label for="state">State</label>
-              <p-dropdown id="state" formControlName="state" [options]="states"
-              optionLabel="name"
-              optionValue="id" ></p-dropdown>
+                *ngIf="
+                  companyForm.controls['confirmPassword'].invalid &&
+                  (companyForm.controls['confirmPassword'].dirty ||
+                    companyForm.controls['confirmPassword'].touched)
+                "
+                class="p-error"
+              >
+                Confirm password is required.
+              </div>
+              <div
+                *ngIf="companyForm.get('confirmPassword')?.errors?.['passwordMatch']"
+                class="p-error"
+              >
+                Password not match.
+              </div>
             </div>
           </div>
-          <h5>Contact Company</h5>
-          <div class="p-fluid grid">
-            <div class="field md:col-6">
-              <label for="email">Email</label>
-              <input pInputText id="email" type="email" placeholder="Email" formControlName="companyEmail"/>
-            </div>
-            <div class="field md:col-6">
-              <label for="phone">Phone</label>
-              <p-inputNumber mode="decimal" id="phone" formControlName="companyPhone" [useGrouping]="false"/>
-            </div>
-          </div>
-          
-          <p-button type="submit" label="Send" [disabled]="companyForm.invalid" />
-          
+
+          <p-button
+            type="submit"
+            label="Send"
+            [disabled]="companyForm.invalid"
+          />
         </form>
       </div>
     </div>
@@ -223,8 +330,8 @@
         <div
           class="flex flex-column justify-content-center align-items-center text-center px-3 py-3 md:py-0"
         >
-        <h3 class="text-gray-900 mb-2">HOW IT WORKS!</h3>
-                        <span class="text-gray-600 text-2xl">Three steps to join us</span>
+          <h3 class="text-gray-900 mb-2">HOW IT WORKS!</h3>
+          <span class="text-gray-600 text-2xl">Three steps to join us</span>
           <div class="col-12 lg:col-4 p-0 md:p-3 mt-4 md:mt-0">
             <div
               class="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all"

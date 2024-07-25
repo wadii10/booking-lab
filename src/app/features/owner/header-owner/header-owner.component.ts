@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
@@ -24,11 +25,14 @@ export class HeaderOwnerComponent {
   profileMenuItems: MenuItem[] | undefined;
   mainMenuItems: MenuItem[] | undefined;
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.mainMenuItems = [
       {
         label: 'Home',
         icon: 'pi pi-home',
+        command: () => this.router.navigate(['owner'])
       },
       {
         label: 'Stadium',
@@ -37,10 +41,12 @@ export class HeaderOwnerComponent {
           {
             label: 'Add Stadium',
             icon: 'pi pi-bolt',
+            command: () => this.router.navigate(['owner/addStadium'])
           },
           {
             label: 'List Stadium',
             icon: 'pi pi-bolt',
+            command: () => this.router.navigate(['/owner/listStadium'])
           },
         ]
       },

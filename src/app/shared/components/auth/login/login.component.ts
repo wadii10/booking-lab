@@ -69,12 +69,12 @@ export class LoginComponent implements OnInit {
       this.userLogin = this.loginForm.value;
       this.authService.login(this.userLogin).subscribe(
         { next : (userData : any) => {
-          //userData.user==null ? this.errorMessage='Login failed. Please check your email and password.' :this.router.navigate(['/']);
           if(this.authService.isLoggedIn()){
-            this.router.navigate([`/profile/${userData.id}`])}
+            this.authService.navigateByRole(userData.id);
+          }
         },
         error : (err) => {
-          this.errorMessage = 'Login failed. Please check your email and password.'+err;
+          this.errorMessage = 'Login failed. Please check your email and password.';
         }}
       );
     }

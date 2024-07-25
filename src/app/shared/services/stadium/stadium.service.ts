@@ -15,9 +15,10 @@ export class StadiumService {
   saveStadium(stadium:Stadium):Observable<void>{
     return (this.httpClient.post<void>(environment.baseApi+'/stadium', stadium));
   }
-  //get all Stadium
-  allStadium():Observable<Stadium[]>{
-    return (this.httpClient.get<Stadium[]>(environment.baseApi+'/stadium'));
+
+  //get all Stadium by company
+  allStadium(id:number):Observable<Stadium[]>{
+    return (this.httpClient.get<Stadium[]>(`${environment.baseApi}/stadium/list/${id}`));
   }
   //update stadium
   updateStadium(stadium:Stadium):Observable<void>{

@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: 'addStadium',
     loadComponent: () => import('./stadium-form/stadium-form.component').then( c => c.StadiumFormComponent)
+  },
+  {
+    path: 'listStadium',
+    loadComponent: () => import('./stadium-list/stadium-list.component').then( c => c.StadiumListComponent)
   }
 ];
 

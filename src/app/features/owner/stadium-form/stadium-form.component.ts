@@ -22,6 +22,8 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 import { CompanyService } from '../../../shared/services/company/company.service';
 import { Stadium } from '../../../shared/models/Stadium';
 import { StadiumService } from '../../../shared/services/stadium/stadium.service';
+import { CalendarModule } from 'primeng/calendar';
+import { twoDigitValidator } from '../../../utils/http.util';
 
 @Component({
   selector: 'app-stadium-form',
@@ -36,6 +38,7 @@ import { StadiumService } from '../../../shared/services/stadium/stadium.service
     ReactiveFormsModule,
     DropdownModule,
     ToastModule,
+    CalendarModule
   ],
   providers: [
     StadiumService,
@@ -78,7 +81,9 @@ export class StadiumFormComponent implements OnInit {
   initForm(): void {
     this.stadiumForm = this.fb.group({
       nameStadium: ['', [Validators.required, Validators.minLength(6)]],
-      capacity: [null, Validators.required],
+      start:['', Validators.required],
+      end:['', Validators.required],
+      capacity: [null, [Validators.required, twoDigitValidator()]],
       activity: ['', Validators.required],
     });
   }
@@ -100,7 +105,6 @@ export class StadiumFormComponent implements OnInit {
     this.companyService.getId(this.userEmail!).subscribe({
       next: (data: any) => {
         this.id = data;
-        console.log(this.id);
       },
       error: (err) => {
         this.toastService.showError('Error', err.error.message);
@@ -110,12 +114,14 @@ export class StadiumFormComponent implements OnInit {
 
   addStadium(): void {
     if (this.stadiumForm.valid) {
-      const { nameStadium, capacity, activity } = this.stadiumForm.value;
+      const { nameStadium, capacity, activity, start, end } = this.stadiumForm.value;
       this.stadium = {
         nameStadium,
         capacity,
         activity: { id: activity },
         company_id: this.id,
+        startTime: start,
+        endTime: end
       };
       this.stadiumService.saveStadium(this.stadium).subscribe({
         next: (data: any) => {

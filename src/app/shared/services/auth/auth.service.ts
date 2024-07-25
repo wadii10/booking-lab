@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserLogin, UserSignup } from '../../models/User';
-import { catchError, map, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environments';
+import { UserLogin, UserSignup } from '../../models/User';
 import { getHeaders } from '../../../utils/http.util';
 import { Company } from '../../models/Company';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -65,8 +65,9 @@ export class AuthService {
     return null;
   }
 
-  navigateByRole(): void {
+  navigateByRole(id:number): void {
     const role = this.getUserRole();
+
     if (role) {
       switch (role) {
         case 'OWNER':
@@ -76,7 +77,11 @@ export class AuthService {
           this.router.navigate(['/admin']);
           break;
         case 'USER':
-          this.router.navigate(['/prodile']);
+          if (id) {
+            this.router.navigate([`/user/profile`, id]);
+          } else {
+            this.router.navigate(['/login']);
+          }
           break;
         default:
           this.router.navigate(['/login']);
@@ -86,4 +91,5 @@ export class AuthService {
       this.router.navigate(['/login']);
     }
   }
+
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from '../../services/auth/auth.guard';
 
 const routes: Routes = [   
   {
@@ -19,8 +20,11 @@ const routes: Routes = [
     loadComponent: () => import('../../../features/user/search-results/search-results.component').then( c => c.SearchResultsComponent)
    },
    {
-    path: 'profile/:id',
-    loadComponent: () => import('../profile/profile.component').then( c => c.ProfileComponent)
+    path: 'user/profile/:id',
+    loadComponent: () =>
+      import('../profile/profile.component').then((c) => c.ProfileComponent),
+    canActivate: [authGuard],
+    data: { expectedRole: 'USER' }
   },
 ];
 
