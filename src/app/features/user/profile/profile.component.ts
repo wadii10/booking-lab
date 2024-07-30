@@ -6,9 +6,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AvatarModule } from 'primeng/avatar';
-import { UserService } from '../../services/user/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { UserProfile } from '../../models/User';
+import { UserService } from '../../../shared/services/user/user.service';
+import { UserProfile } from '../../../shared/models/User';
+
 
 @Component({
   selector: 'app-profile',

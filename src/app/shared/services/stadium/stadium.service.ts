@@ -29,4 +29,8 @@ export class StadiumService {
     return (this.httpClient.delete<void>(`${environment.baseApi}/stadium/${id}`));
   }
   
+  //get stadium by Id
+  getStadiumById(id:number):Observable<Stadium>{
+    return (this.httpClient.get<Stadium>(`${environment.baseApi}/stadium/${id}`))
+  }
 }

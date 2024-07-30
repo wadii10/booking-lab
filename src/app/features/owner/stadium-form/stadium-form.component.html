@@ -4,7 +4,7 @@
     <p-card header="Add Stadium" styleClass="card">
       <form [formGroup]="stadiumForm" (ngSubmit)="addStadium()">
         <div class="p-fluid grid">
-          <div class="field md:col-6">
+          <div class="field md:col-4">
             <label for="stadiumName">Stadium Name</label>
             <input
               id="stadiumName"
@@ -25,7 +25,7 @@
             </div>
           </div>
 
-          <div class="field md:col-6">
+          <div class="field md:col-4">
             <label for="activity">Activities</label>
             <p-dropdown
               id="activity"
@@ -45,44 +45,7 @@
               Activity is required.
             </div>
           </div>
-          <div class="field md:col-4">
-            <label for="start">Start</label>
-            <p-calendar
-              id="start"
-              inputId="calendar-timeonly"
-              formControlName="start"
-              [timeOnly]="true"
-            />
-            <div
-              *ngIf="
-                stadiumForm.controls['start'].invalid &&
-                (stadiumForm.controls['start'].dirty ||
-                  stadiumForm.controls['start'].touched)
-              "
-              class="p-error"
-            >
-              Start Time is required.
-            </div>
-          </div>
-          <div class="field md:col-4">
-            <label for="end">End</label>
-            <p-calendar
-              id="end"
-              inputId="calendar-timeonly"
-              formControlName="end"
-              [timeOnly]="true"
-            />
-            <div
-              *ngIf="
-                stadiumForm.controls['end'].invalid &&
-                (stadiumForm.controls['end'].dirty ||
-                  stadiumForm.controls['end'].touched)
-              "
-              class="p-error"
-            >
-              Start Time is required.
-            </div>
-          </div>
+
           <div class="field md:col-4">
             <label for="capacity">Stadium Capacity</label>
             <input
@@ -111,6 +74,89 @@
                 must be a number with up to 2 digits.
               </div>
             </div>
+          </div>
+
+          <div class="field md:col-4">
+            <label for="startT">Start</label>
+            <p-calendar
+              id="startT"
+              inputId="calendar-timeonly"
+              formControlName="startT"
+              [timeOnly]="true"
+              hourFormat="24"
+            />
+            <div
+              *ngIf="
+                stadiumForm.controls['startT'].invalid &&
+                (stadiumForm.controls['startT'].dirty ||
+                  stadiumForm.controls['startT'].touched)
+              "
+              class="p-error"
+            >
+              Start Time is required.
+            </div>
+          </div>
+          <div class="field md:col-4">
+            <label for="endT">End</label>
+            <p-calendar
+              id="endT"
+              inputId="calendar-timeonly"
+              formControlName="endT"
+              [timeOnly]="true"
+              hourFormat="24"
+            />
+            <div
+              *ngIf="
+                stadiumForm.controls['endT'].invalid &&
+                (stadiumForm.controls['endT'].dirty ||
+                  stadiumForm.controls['endT'].touched)
+              "
+              class="p-error"
+            >
+              Start Time is required.
+            </div>
+          </div>
+
+          <div class="field md:col-4">
+            <label for="capacity">Delay</label>
+            <input
+              id="delay"
+              type="number"
+              pInputText
+              formControlName="delay"
+            />
+            <div
+              *ngIf="
+                stadiumForm.controls['delay'].invalid &&
+                (stadiumForm.controls['delay'].dirty ||
+                  stadiumForm.controls['delay'].touched)
+              "
+              class="p-error"
+            >
+              <div
+                *ngIf="stadiumForm.controls['capacity'].hasError('required')"
+              >
+                Delay is required.
+              </div>
+            </div>
+          </div>
+          
+          <div class="field md:col-12" formArrayName="uploadedFiles">
+            <p-fileUpload 
+            name="file"  
+            url="https://www.primefaces.org/cdn/api/upload.php" 
+            (onUpload)="onUpload($event)" 
+            [multiple]="true" 
+            accept="image/*" 
+            maxFileSize="1000000">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="files.length">
+                        <li *ngFor="let file of files">
+                          {{ file.name }} - {{ file.size }} bytes
+                        </li>
+                    </ul>
+                </ng-template>
+        </p-fileUpload>
           </div>
 
           <button

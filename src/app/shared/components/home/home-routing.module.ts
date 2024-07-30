@@ -16,15 +16,19 @@ const routes: Routes = [
     loadComponent: () => import('../../../features/owner/company-form/company-form.component').then(c => c.CompanyFormComponent)
    },
    {
-    path: 'search-results',
+    path: 'search',
     loadComponent: () => import('../../../features/user/search-results/search-results.component').then( c => c.SearchResultsComponent)
    },
    {
     path: 'user/profile/:id',
     loadComponent: () =>
-      import('../profile/profile.component').then((c) => c.ProfileComponent),
+      import('../../../features/user/profile/profile.component').then((c) => c.ProfileComponent),
     canActivate: [authGuard],
     data: { expectedRole: 'USER' }
+  },
+  {
+    path: 'search-detail/:id',
+    loadComponent: () => import('../../../features/user/search-detail/search-detail.component').then( c => c.SearchDetailComponent)
   },
 ];
 

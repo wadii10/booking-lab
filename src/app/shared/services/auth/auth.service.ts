@@ -50,17 +50,21 @@ export class AuthService {
   }
 
   getUserEmail(): string | null {
-    const user = localStorage.getItem('authUser');
-    if (user) {
-      return JSON.parse(user).email;
+    if (typeof localStorage !== 'undefined') {
+      const user = localStorage.getItem('authUser');
+      if (user) {
+        return JSON.parse(user).email;
+      }
     }
     return null;
   }
 
   getUserRole(): string | null {
-    const user = localStorage.getItem('authUser');
-    if (user) {
+    if (typeof localStorage !== 'undefined') {
+      const user = localStorage.getItem('authUser');
+      if (user) {
       return JSON.parse(user).role;
+      }
     }
     return null;
   }

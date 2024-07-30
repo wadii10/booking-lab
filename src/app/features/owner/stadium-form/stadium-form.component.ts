@@ -1,5 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormGroup,
   FormsModule,
@@ -24,6 +25,8 @@ import { Stadium } from '../../../shared/models/Stadium';
 import { StadiumService } from '../../../shared/services/stadium/stadium.service';
 import { CalendarModule } from 'primeng/calendar';
 import { twoDigitValidator } from '../../../utils/http.util';
+import { FileUploadModule } from 'primeng/fileupload';
+import { CloudinaryService } from '../../../shared/services/cloudinary/cloudinary.service';
 
 @Component({
   selector: 'app-stadium-form',
@@ -38,7 +41,8 @@ import { twoDigitValidator } from '../../../utils/http.util';
     ReactiveFormsModule,
     DropdownModule,
     ToastModule,
-    CalendarModule
+    CalendarModule,
+    FileUploadModule
   ],
   providers: [
     StadiumService,
@@ -47,6 +51,7 @@ import { twoDigitValidator } from '../../../utils/http.util';
     ToastService,
     MessageService,
     CompanyService,
+    CloudinaryService,
   ],
   templateUrl: './stadium-form.component.html',
   styleUrl: './stadium-form.component.scss',
@@ -57,7 +62,8 @@ export class StadiumFormComponent implements OnInit {
     private stadiumService: StadiumService,
     private activityService: ActivityService,
     private toastService: ToastService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cloudinaryService: CloudinaryService
   ) {}
   fb = inject(FormBuilder);
 
@@ -68,6 +74,10 @@ export class StadiumFormComponent implements OnInit {
   stadium?: Stadium;
 
   id?: number;
+
+  files: any[] = [];
+
+  imageUrl?: string;
 
   ngOnInit(): void {
     this.userEmail = this.authService.getUserEmail();
@@ -81,11 +91,62 @@ export class StadiumFormComponent implements OnInit {
   initForm(): void {
     this.stadiumForm = this.fb.group({
       nameStadium: ['', [Validators.required, Validators.minLength(6)]],
-      start:['', Validators.required],
-      end:['', Validators.required],
-      capacity: [null, [Validators.required, twoDigitValidator()]],
       activity: ['', Validators.required],
+      capacity: [null, [Validators.required, twoDigitValidator()]],
+      startT: ['', Validators.required],
+      endT: ['', Validators.required],
+      delay: [null, Validators.required],
+      uploadedFiles: this.fb.array([])
     });
+  }
+
+  get uploadedFiles(): FormArray {
+    return this.stadiumForm.get('uploadedFiles') as FormArray;
+  }
+
+
+  formatTime(date: Date): string {
+    if (!date) return '';
+    
+    const d = new Date(date);
+    const hours = d.getHours().toString().padStart(2, '0');
+    const minutes = d.getMinutes().toString().padStart(2, '0');
+    
+    return `${hours}:${minutes}`;
+  }
+
+  addStadium(): void {
+    if (this.stadiumForm.valid) {
+      const {
+        nameStadium,
+        activity,
+        delay,
+        capacity,
+        uploadedFiles,
+        startT,
+        endT,
+      } = this.stadiumForm.value;
+      this.stadium = {
+        nameStadium,
+        capacity,
+        activity: { id: activity },
+        company_id: this.id,
+        startTime:this.formatTime(startT),
+        endTime:this.formatTime(endT),
+        duration:delay,
+        photos:uploadedFiles
+      };
+      console.log(this.stadium);
+      this.stadiumService.saveStadium(this.stadium).subscribe({
+        next: (data: any) => {
+          this.toastService.showSuccess('Success', 'Stadium added');
+          this.stadiumForm.reset();
+        },
+        error: (err) => {
+          this.toastService.showError('Error', err.error.message);
+        },
+      });
+    }
   }
 
   // get all activity
@@ -112,26 +173,29 @@ export class StadiumFormComponent implements OnInit {
     });
   }
 
-  addStadium(): void {
-    if (this.stadiumForm.valid) {
-      const { nameStadium, capacity, activity, start, end } = this.stadiumForm.value;
-      this.stadium = {
-        nameStadium,
-        capacity,
-        activity: { id: activity },
-        company_id: this.id,
-        startTime: start,
-        endTime: end
-      };
-      this.stadiumService.saveStadium(this.stadium).subscribe({
-        next: (data: any) => {
-          this.toastService.showSuccess('Success', 'Stadium added');
-          this.stadiumForm.reset();
-        },
-        error: (err) => {
-          this.toastService.showError('Error', err.error.message);
-        },
-      });
+  //cloudiary
+  onUpload(event: any) {
+    for (let file of event.files) {
+      this.uploadFile(file);
+      this.files.push(file);
     }
   }
+
+  uploadFile(file: File) {
+    const fd = new FormData();
+    fd.append('file', file);
+    this.cloudinaryService.upload(fd).subscribe({
+      next: (data) => {
+        this.imageUrl = data.url;
+        console.log(this.imageUrl)
+        this.uploadedFiles.push(this.fb.control(this.imageUrl));
+        // this.uploadedFiles?.push(this.imageUrl)
+        console.log(this.uploadedFiles)
+      },
+      error: (error) => {
+        console.error('Upload error', error);
+      },
+    });
+  }
+
 }

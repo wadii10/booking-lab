@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
-import { HomeService } from '../../services/home.service';
 
 @Component({
   selector: 'app-events',
@@ -12,15 +11,11 @@ import { HomeService } from '../../services/home.service';
   styleUrl: './events.component.scss',
   host: {ngSkipHydration:"true"},
 })
-export class EventsComponent implements OnInit{
+export class EventsComponent {
  
   responsiveOptions: any[] | undefined;
 
-  constructor(private HS:HomeService) {}
-  events !: any[];
-  ngOnInit(): void {
-    this.events = this.HS.events;
-  }
+  events : any[] = [];
   
   
 }

@@ -1,4 +1,4 @@
-<div class="layout-topbar">
+<div class="layout-topbar bg-dark">
   <a class="layout-topbar-logo" routerLink="">
     <img
       class="logo"
@@ -35,10 +35,7 @@
   <div
     #topbarmenu
     class="layout-topbar-menu"
-    [ngClass]="{
-      'layout-topbar-menu-mobile-active':
-        layoutService.state.profileSidebarVisible
-    }"
+    
   >
     <div
       class="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0"

@@ -27,6 +27,12 @@ export class ActivityService {
       `${environment.baseApi}/activity/${activity.id}`
     );
   }
+  //get one activity
+  getActivityById(id: number): Observable<Activity> {
+    return this.httpClient.get<Activity>(
+      `${environment.baseApi}/activity/${id}`
+    );
+  }
   //update activity
   updateActivity(activity: Activity): Observable<void> {
     return this.httpClient.put<void>(

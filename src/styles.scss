@@ -11,6 +11,9 @@ $gutter: 1rem; //for primeflex grid system
 @import "assets/demo/styles/badges.scss";
 @import "assets/demo/styles/code.scss";
 
+@import 'filepond/dist/filepond.min.css';
+@import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+
 .p-fluid {
   &.mt-8 {
     display: flex;

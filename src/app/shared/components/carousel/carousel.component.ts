@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
-import { HomeService } from '../../services/home.service';
 
 
 @Component({
@@ -16,7 +15,6 @@ export class CarouselComponent {
   
   responsiveOptions: any[] | undefined;
  
-  constructor(private HS:HomeService) { }
 
-  activities : any[] = this.HS.activities;
+  activities : any[] = [];
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
@@ -47,7 +47,7 @@ export class SearchFormComponent {
 
   initForm(): void {
     this.searchForm = this.fb.group({
-      state: [this.defaultState],
+      state: ['', [Validators.required]],
       activity: ['', [Validators.required]],
       date: [this.todayDate],
     });
@@ -56,9 +56,14 @@ export class SearchFormComponent {
   onSearch() {
     const state = this.searchForm.get('state')?.value;
     const activity = this.searchForm.get('activity')?.value;
-    const date = this.searchForm.get('date')?.value.toISOString().split('T')[0];;
     this.loading = false;
-    this.router.navigate(['home/search-results'], { queryParams: { state, activity, date } });
+    this.router.navigate([`search`],{
+      queryParamsHandling:'merge',
+      queryParams:{
+        state,
+        activity
+      }
+    });
   }
 
   // get all state
