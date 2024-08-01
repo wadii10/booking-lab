@@ -1,1 +1,68 @@
-<p>search-detail works!</p>
+<div class="container">
+
+  <div class="xl:col-10 lg:col-10 p-0 md:p-3 mt-2 md:mt-0">
+    <div class="flex flex-column border-200 pricing-card border-2 transition-all p-3" style="border-radius:10px">
+        <p-galleria
+        [value]="stadium && stadium.photos"
+        [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '100%' }"
+        [numVisible]="3"
+      >
+        <ng-template pTemplate="item" let-item>
+          <img [src]="item" style="width: 100%; height: 30rem; display: block" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+          <div class="grid-nogutter justify-content-center">
+            <img [src]="item" style="width: 100%; height: 5rem; display: block" />
+          </div>
+        </ng-template>
+      </p-galleria>
+       
+          <div class="grid my-5 gap-4">
+            <div class="flex flex-row gap-4 col-10">
+              <p-divider layout="vertical" />
+            <p-avatar size="xlarge" label="O" />
+            <div class="flex flex-column gap-2">
+              <span>
+                <span class="text-lg font-medium text-900">{{ stadium?.company?.companyName }}-</span>
+                <span class="text-lg font-medium text-900">{{stadium?.nameStadium}}</span>
+              </span>
+              <div class="font-medium text-secondary text-m">
+                {{ stadium?.activity?.name }}
+              </div>
+            </div>
+            </div>
+            <p-button class="col-1 ml-5" severity="success" [outlined]="true"><span class="text-xl  text-900">{{stadium?.price + "DT"}}</span></p-button>
+          </div>
+        
+        <p-divider class="w-full bg-surface-200"></p-divider>
+        <ul class="my-3 list-none p-2 flex text-900 flex-row">
+            <li class="py-2">
+              <i class="pi pi-fw pi-map-marker text-xl text-cyan-500 mr-2"></i>
+              <span class="text-xl line-height-3 mr-2">{{stadium?.company?.state?.name}}</span>
+            </li>
+        <p-divider layout="vertical" />
+            <li class="py-2">
+                <i class="pi pi-fw pi-clock text-xl text-cyan-500 mr-2" style="font-size: 2.5rem"></i>
+                <span class="text-xl line-height-3 mr-2">{{stadium?.duration + " " + "min"}}</span>
+            </li>
+            <p-divider layout="vertical" />
+            <li class="py-2">
+              <i class="pi pi-fw pi-users text-xl text-cyan-500 mr-2"></i>
+              <span class="text-xl line-height-3 mr-2">{{stadium?.capacity+" "+"participants"}}</span>
+            </li>
+            <p-divider layout="vertical" />
+            <li class="py-2">
+                <i class="pi pi-fw pi-hashtag text-xl text-cyan-500 mr-2"></i>
+                <span class="text-xl line-height-3 mr-2">{{stadium?.activity?.name}}</span>
+            </li>
+            <p-divider layout="vertical" />
+            <li class="py-2">
+              <i class="pi pi-lock-open text-cyan-500 mr-2"></i>
+              <span class="text-xl line-height-3 mr-2">{{stadium?.startTime+" "}}-{{" "+stadium?.endTime}}</span>
+            </li>
+        </ul>
+        
+    </div>
+</div>
+</div>

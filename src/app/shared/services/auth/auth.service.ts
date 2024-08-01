@@ -43,10 +43,12 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('authUser');
+    this.router.navigate(['/login'])
   }
 
   isLoggedIn() {
-    return localStorage.getItem('authUser') !== null;
+    const user = localStorage.getItem('authUser')
+    return (user && JSON.parse(user).id !== null) || false;
   }
 
   getUserEmail(): string | null {

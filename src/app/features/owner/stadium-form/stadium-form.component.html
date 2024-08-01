@@ -1,4 +1,4 @@
-<div class="p-fluid mt-8">
+<div class="flex justify-content-center">
   <p-toast />
   <div class="col-12 md:col-6">
     <p-card header="Add Stadium" styleClass="card">
@@ -47,14 +47,36 @@
           </div>
 
           <div class="field md:col-4">
+            <label for="price">Price</label>
+            <p-inputNumber 
+            formControlName="price" 
+            mode="decimal" 
+            inputId="withoutgrouping" 
+            [useGrouping]="false" /> 
+           
+            <div
+              *ngIf="
+                stadiumForm.controls['price'].invalid &&
+                (stadiumForm.controls['price'].dirty ||
+                  stadiumForm.controls['price'].touched)
+              "
+              class="p-error"
+            >
+              <div
+                *ngIf="stadiumForm.controls['price'].hasError('required')"
+              >
+                Price is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="field md:col-3">
             <label for="capacity">Stadium Capacity</label>
-            <input
-              id="capacity"
-              type="number"
-              pInputText
-              formControlName="capacity"
-              placeholder="Stadium Capacity"
-            />
+            <p-inputNumber 
+            formControlName="capacity" 
+            mode="decimal" 
+            inputId="withoutgrouping" 
+            [useGrouping]="false" />
             <div
               *ngIf="
                 stadiumForm.controls['capacity'].invalid &&
@@ -76,7 +98,7 @@
             </div>
           </div>
 
-          <div class="field md:col-4">
+          <div class="field md:col-3">
             <label for="startT">Start</label>
             <p-calendar
               id="startT"
@@ -96,7 +118,7 @@
               Start Time is required.
             </div>
           </div>
-          <div class="field md:col-4">
+          <div class="field md:col-3">
             <label for="endT">End</label>
             <p-calendar
               id="endT"
@@ -117,8 +139,8 @@
             </div>
           </div>
 
-          <div class="field md:col-4">
-            <label for="capacity">Delay</label>
+          <div class="field md:col-3">
+            <label for="delay">Delay</label>
             <input
               id="delay"
               type="number"
@@ -134,7 +156,7 @@
               class="p-error"
             >
               <div
-                *ngIf="stadiumForm.controls['capacity'].hasError('required')"
+                *ngIf="stadiumForm.controls['delay'].hasError('required')"
               >
                 Delay is required.
               </div>

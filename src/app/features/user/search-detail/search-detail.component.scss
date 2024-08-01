@@ -1,0 +1,15 @@
+.container {
+  container: unset;
+  justify-content: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 5rem;
+  padding: 2rem;
+}
+
+.header-detail {
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+}

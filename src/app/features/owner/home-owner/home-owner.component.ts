@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HeaderOwnerComponent } from '../header-owner/header-owner.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
+import { FooterOwnerComponent } from "../footer-owner/footer-owner.component";
 
 @Component({
   selector: 'app-home-owner',
@@ -8,8 +10,10 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   imports: [
     RouterOutlet,
     RouterModule,
-    HeaderOwnerComponent
-  ],
+    HeaderOwnerComponent,
+    FooterComponent,
+    FooterOwnerComponent
+],
   templateUrl: './home-owner.component.html',
   styleUrl: './home-owner.component.scss'
 })

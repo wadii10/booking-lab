@@ -1,0 +1,16 @@
+::ng-deep {
+    .fixed {
+        z-index: 999;
+        position: sticky ;
+        top: 70px;
+        width: 100%;
+        left: 0;
+        .p-toolbar{
+            width: 100%;
+        }
+      }
+  .p-toolbar {
+    justify-content: center;
+    
+  }
+}

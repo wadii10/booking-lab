@@ -26,6 +26,7 @@ import { StadiumService } from '../../../shared/services/stadium/stadium.service
 import { CalendarModule } from 'primeng/calendar';
 import { twoDigitValidator } from '../../../utils/http.util';
 import { FileUploadModule } from 'primeng/fileupload';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { CloudinaryService } from '../../../shared/services/cloudinary/cloudinary.service';
 
 @Component({
@@ -42,7 +43,8 @@ import { CloudinaryService } from '../../../shared/services/cloudinary/cloudinar
     DropdownModule,
     ToastModule,
     CalendarModule,
-    FileUploadModule
+    FileUploadModule,
+    InputNumberModule
   ],
   providers: [
     StadiumService,
@@ -91,6 +93,7 @@ export class StadiumFormComponent implements OnInit {
   initForm(): void {
     this.stadiumForm = this.fb.group({
       nameStadium: ['', [Validators.required, Validators.minLength(6)]],
+      price: [null, [Validators.required]],
       activity: ['', Validators.required],
       capacity: [null, [Validators.required, twoDigitValidator()]],
       startT: ['', Validators.required],
@@ -119,6 +122,7 @@ export class StadiumFormComponent implements OnInit {
     if (this.stadiumForm.valid) {
       const {
         nameStadium,
+        price,
         activity,
         delay,
         capacity,
@@ -128,9 +132,10 @@ export class StadiumFormComponent implements OnInit {
       } = this.stadiumForm.value;
       this.stadium = {
         nameStadium,
+        price:price,
         capacity,
         activity: { id: activity },
-        company_id: this.id,
+        company: { id :this.id},
         startTime:this.formatTime(startT),
         endTime:this.formatTime(endT),
         duration:delay,

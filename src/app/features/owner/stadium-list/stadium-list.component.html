@@ -1,31 +1,62 @@
-<p-card header="Add Stadium" styleClass="card"> 
-    <h5>DataView</h5>
-    
-    <p-dataView #dv [value]="stadiums" [paginator]="true" [rows]="5" filterBy="name" [sortField]="sortField" >
+<p-card>
+    <p-dataView #dv [value]="stadiums" [rows]="5" [paginator]="true" class="p-4 m-3">
         <ng-template pTemplate="header">
-            list Stadium
-        </ng-template>
 
-        <ng-template let-stadiums pTemplate="listItem">
-            <div class="col-12" *ngFor="let stadium of stadiums">
-                <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
-                    <!-- <img [src]="'assets/demo/images/stadium/' + stadium.image" [alt]="stadium.nameStadium" class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5"/> -->
-                    <div class="flex-1 flex flex-column align-items-center text-center md:text-left">
-                        <div class="font-bold text-2xl">{{stadium.nameStadium}}</div>
-                        <div class="mb-2">{{stadium.capacity}}</div>
+        </ng-template>
+    
+        <ng-template let-stadiums pTemplate="list">
+            <div class="grid grid-nogutter">
+            <div class="col-12" *ngFor="let stadium of stadiums; let first = first">
+                <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3" [ngClass]="{ 'border-top-1 surface-border': !first }">
+                    <div class="relative">
+                        <p-galleria 
+                                [value]="stadium?.photos" 
+                                [showIndicators]="true" 
+                                [showThumbnails]="false" 
+                                [changeItemOnIndicatorHover]="true" 
+                                [containerStyle]="{ 'max-width': '600px' }"> 
+                                    <ng-template pTemplate="item" let-item>
+                                        <img [src]="item" style="width: 100%; height: 15rem; display: block;" />
+                                    </ng-template>
+                        </p-galleria>
+                    </div>
+                    <div class="flex flex-column justify-content-between md:align-items-center flex-1 row-gap-6">
+                        <div class="flex md:flex-column align-items-center gap-3">
+                            <div class="font-bold text-2xl">{{stadium.nameStadium}}</div>
+                            <div class="mb-2">{{stadium?.company?.companyName}}</div>
+                             <div class="flex flex-row list-none text-900">
+                            <li class="p-2">
+                              <i class="pi pi-clock text-xl text-cyan-500 mr-2"></i>
+                              <span class="text-xl line-height-3">{{stadium.duration}}</span>
+                              <span class="text-600">min</span>
+                            </li>
+                            <li class="p-2">
+                              <i class="pi pi-users text-xl text-cyan-500 mr-2"></i>
+                              <span class="text-xl line-height-3">{{stadium.capacity}}</span>
+                            </li>
+                            <li class="p-2">
+                              <i class="pi pi-map-marker text-xl text-cyan-500 mr-2"></i>
+                              <span class="text-xl line-height-3">{{stadium.company?.state.name}}</span>
+                            </li>
+                            </div>
                         <div class="flex align-items-center mt-2">
-                            <i class="pi pi-tag mr-2"></i>
-                            <!-- <span class="font-semibold">{{stadium.category}}</span> -->
+                            <i class="pi pi-hashtag mr-2"></i>
+                            <span class="font-semibold">{{stadium.activity.name}}</span>
                         </div>
                     </div>
-                    <div class="flex flex-row md:flex-column justify-content-between w-full md:w-auto align-items-center md:align-items-end mt-5 md:mt-0">
-                        <span class="text-2xl font-semibold mb-2 align-self-center md:align-self-end">${{stadium.activity.name}}</span>
-                        <!-- <p-button icon="pi pi-shopping-cart" label="Add to Cart" [disabled]="stadium.inventoryStatus === 'OUTOFSTOCK'" styleClass="mb-2 p-button-sm"></p-button>
-                        <span [class]="'stadium-badge status-' + stadium.inventoryStatus.toLowerCase()">{{stadium.inventoryStatus}}</span> -->
+                </div>
+                    <div class="flex flex-column md:align-items-center gap-8">
+                        <span class="text-xl font-semibold text-900">{{stadium.price}}Dt</span>
+                        <div class="flex flex-row gap-2">
+                            <p-button icon="pi pi-info-circle" label="Detail"></p-button>
+                            <p-button icon="pi pi-trash" severity="danger" [outlined]="true" />
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         </ng-template>
-
+    
     </p-dataView>
+    
 </p-card>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
@@ -22,6 +22,8 @@ import { ActivityService } from '../../../shared/services/activity/activity.serv
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { ToolbarModule } from 'primeng/toolbar';
+import { AvatarModule } from 'primeng/avatar';
+
 
 @Component({
   selector: 'app-search-results',
@@ -37,11 +39,12 @@ import { ToolbarModule } from 'primeng/toolbar';
     DropdownModule,
     CalendarModule,
     ToolbarModule,
+    AvatarModule
   ],
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss',
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -52,13 +55,15 @@ export class SearchResultsComponent implements OnInit {
   ) {
     
   }
+
+  
   activity?: number;
   state?: number;
   selectedState: any;
   selectedActivity: any;
   searchResults: Stadium[] = [];
   images: any[] | undefined;
-
+  
   searchReq!: SearchForm;
 
   loading: boolean = false;
@@ -69,7 +74,7 @@ export class SearchResultsComponent implements OnInit {
   states: State[] = [];
   activities: Activity[] = [];
   todayDate = new Date();
-
+  
   ngOnInit(): void {
     this.initForm();
     this.activity = Number.parseInt(this.activatedRoute.snapshot.queryParams['activity']);
@@ -78,6 +83,29 @@ export class SearchResultsComponent implements OnInit {
     this.getStates();
     this.getActivities();
     this.onSearch();
+  }
+  
+  ngAfterViewInit(): void {
+    this.onScroll();
+  }
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.onScroll();
+  }
+
+  onScroll() {
+    const centerDiv = document.getElementById('stickyFilter');
+    if (centerDiv) {
+      const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+      const viewportHeight = window.innerHeight;
+      const triggerPosition = viewportHeight * 0.2;
+
+      if (scrollPosition > triggerPosition) {
+        centerDiv.classList.add('fixed');
+      } else {
+        centerDiv.classList.remove('w-full');
+      }
+    }
   }
 
   initForm(): void {

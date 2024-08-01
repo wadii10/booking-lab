@@ -15,7 +15,12 @@ export class EventsComponent {
  
   responsiveOptions: any[] | undefined;
 
-  events : any[] = [];
+  events: any[] = [
+    { name: 'Foot-ball', photo: 'assets/demo/images/activities/football.jpeg' },
+    { name: 'Basket-ball', photo: 'assets/demo/images/activities/basketball.jpeg' },
+    { name: 'Hand-ball', photo: 'assets/demo/images/activities/handball.jpeg' },
+    { name: 'Tennis', photo: 'assets/demo/images/activities/tennis.jpeg' },
+  ];
   
   
 }

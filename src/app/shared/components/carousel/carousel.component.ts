@@ -14,7 +14,11 @@ import { ButtonModule } from 'primeng/button';
 export class CarouselComponent {
   
   responsiveOptions: any[] | undefined;
- 
 
-  activities : any[] = [];
+  activities: any[] = [
+    { name: 'Foot-ball', photo: 'assets/demo/images/activities/football.jpeg' },
+    { name: 'Basket-ball', photo: 'assets/demo/images/activities/basketball.jpeg' },
+    { name: 'Hand-ball', photo: 'assets/demo/images/activities/handball.jpeg' },
+    { name: 'Tennis', photo: 'assets/demo/images/activities/tennis.jpeg' },
+  ];
 }

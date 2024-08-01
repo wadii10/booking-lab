@@ -10,11 +10,12 @@ import { DataViewModule } from 'primeng/dataview';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GalleriaModule } from 'primeng/galleria';
 
 @Component({
   selector: 'app-stadium-list',
   standalone: true,
-  imports: [ ReactiveFormsModule, CommonModule, CardModule, DataViewModule, ButtonModule],
+  imports: [ ReactiveFormsModule, CommonModule, CardModule, DataViewModule, ButtonModule, GalleriaModule],
   providers: [CompanyService, StadiumService, ToastService, MessageService],
   templateUrl: './stadium-list.component.html',
   styleUrl: './stadium-list.component.scss',
@@ -49,7 +50,6 @@ export class StadiumListComponent implements OnInit {
       next: (data: any) => {
         this.id = data;
         //list of stadium
-
         this.stadiumService.allStadium(this.id!).subscribe({
           next: (data: Stadium[]) => {
             this.stadiums = data;
@@ -65,4 +65,5 @@ export class StadiumListComponent implements OnInit {
       },
     });
   }
+
 }
