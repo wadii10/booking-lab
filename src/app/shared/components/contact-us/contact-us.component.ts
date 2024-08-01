@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { exactLengthValidator } from '../../../utils/http.util';
 
 @Component({
   selector: 'app-contact-us',
@@ -35,7 +36,7 @@ export class ContactUsComponent implements OnInit {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        phoneNumber: ['', [Validators.required, Validators.minLength(8)]],
+        phoneNumber: ['', [Validators.required, exactLengthValidator(8)]],
         subject: ['', Validators.required],
         message: ['', Validators.required],
       }

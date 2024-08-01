@@ -82,11 +82,10 @@
                       (contactForm.controls['phoneNumber'].dirty ||
                         contactForm.controls['phoneNumber'].touched)
                     "
-                    class="p-error"
-                  >
-                  phone number is required.
+                    class="p-error">
+                  <span>phone number is required.</span>
+                  <span *ngIf="contactForm.controls['phoneNumber'].errors?.['exactLength']">Phone number must be exactly 8 digits.</span>
                   </div>
-                  <span class="p-error" *ngIf="contactForm.controls['phoneNumber'].errors">Phone number must be exactly 8 characters.</span>
                 </div>
               </div>
             </div>

@@ -17,15 +17,18 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit{
   authService = inject(AuthService);
+  router = inject(Router);
+  
   isLoggedIn!:  boolean;
   
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn()
   }
+
   logout() {
     this.authService.logout();
   }
-  router = inject(Router);
+  
   
   title: String = "Booking App";
 }

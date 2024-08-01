@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-header-owner',
@@ -24,8 +25,8 @@ export class HeaderOwnerComponent {
 
   profileMenuItems: MenuItem[] | undefined;
   mainMenuItems: MenuItem[] | undefined;
-
-  constructor(private router: Router) {}
+  authService = inject(AuthService);
+  router = inject(Router);
 
   ngOnInit() {
     this.mainMenuItems = [
@@ -115,8 +116,13 @@ export class HeaderOwnerComponent {
       {
         label: 'Quit',
         icon: 'pi pi-fw pi-sign-out',
+        command: () => this.logout()
       },
     ];
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }
