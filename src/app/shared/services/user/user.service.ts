@@ -11,8 +11,8 @@ export class UserService {
   constructor(private httpClient:HttpClient) { }
 
   //get user by id
-  getUserById(id:number): Observable<any> {
-    return this.httpClient.get<any>(`${environment.baseApi}/user/profile/${id}`);
+  getUserById(email:string): Observable<any> {
+    return this.httpClient.get<any>(`${environment.baseApi}/user/profile/${email}`);
   }
   
 }

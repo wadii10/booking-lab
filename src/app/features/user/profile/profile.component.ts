@@ -6,9 +6,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AvatarModule } from 'primeng/avatar';
-import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../shared/services/user/user.service';
 import { UserProfile } from '../../../shared/models/User';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 
 
 @Component({
@@ -30,14 +30,14 @@ import { UserProfile } from '../../../shared/models/User';
 })
 export class ProfileComponent implements OnInit {
   
-  constructor(private fb: FormBuilder, private userService: UserService, private activatedRoute: ActivatedRoute) {}
+  constructor(private fb: FormBuilder, private userService: UserService, private authService:AuthService) {}
   
   updateForm!: FormGroup;
-  id: number = this.activatedRoute.snapshot.params["id"];
+ 
   userProfile!: UserProfile;
 
   ngOnInit(): void {
-    this.getUserById();
+    this.getProfile()
     this.initForm();
   }
 
@@ -63,8 +63,9 @@ export class ProfileComponent implements OnInit {
     return {};
   }
 
-  getUserById() {
-    this.userService.getUserById(this.id).subscribe({
+  getProfile() {
+     const email = this.authService.getUserEmail();
+     this.userService.getUserById(email!).subscribe({
       next : (res) => {
         this.userProfile = res;
         this.updateForm.patchValue(this.userProfile);

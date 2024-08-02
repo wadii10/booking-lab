@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit{
   isLoggedIn!:  boolean;
   
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn()
+    this.isLoggedIn = this.authService.isLoggedIn();
   }
 
   logout() {

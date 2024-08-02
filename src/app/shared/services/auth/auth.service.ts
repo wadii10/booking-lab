@@ -11,7 +11,7 @@ import { Company } from '../../models/Company';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private httpClient: HttpClient, private router:Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   //for all role of users
   login(userLogin: UserLogin): Observable<any> {
@@ -37,17 +37,18 @@ export class AuthService {
   //for Company
   signUpCompany(company: Company): Observable<any> {
     return this.httpClient.post<any>(
-      environment.baseApi+'/company/create', company
-    )
+      environment.baseApi + '/company/create',
+      company
+    );
   }
 
   logout() {
     localStorage.removeItem('authUser');
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
-  isLoggedIn() {
-    const user = localStorage.getItem('authUser')
+  isLoggedIn(): boolean {
+    const user = localStorage.getItem('authUser');
     return (user && JSON.parse(user).id !== null) || false;
   }
 
@@ -65,13 +66,13 @@ export class AuthService {
     if (typeof localStorage !== 'undefined') {
       const user = localStorage.getItem('authUser');
       if (user) {
-      return JSON.parse(user).role;
+        return JSON.parse(user).role;
       }
     }
     return null;
   }
 
-  navigateByRole(id:number): void {
+  navigateByRole(id: number): void {
     const role = this.getUserRole();
 
     if (role) {
@@ -83,11 +84,7 @@ export class AuthService {
           this.router.navigate(['/admin']);
           break;
         case 'USER':
-          if (id) {
-            this.router.navigate([`/user/profile`, id]);
-          } else {
-            this.router.navigate(['/login']);
-          }
+          this.router.navigate([`/user/profile`]);
           break;
         default:
           this.router.navigate(['/login']);
@@ -97,5 +94,4 @@ export class AuthService {
       this.router.navigate(['/login']);
     }
   }
-
 }

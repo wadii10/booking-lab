@@ -20,7 +20,7 @@ const routes: Routes = [
     loadComponent: () => import('../../../features/user/search-results/search-results.component').then( c => c.SearchResultsComponent)
    },
    {
-    path: 'user/profile/:id',
+    path: 'user/profile',
     loadComponent: () =>
       import('../../../features/user/profile/profile.component').then((c) => c.ProfileComponent),
     canActivate: [authGuard],
