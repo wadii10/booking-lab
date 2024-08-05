@@ -1,9 +1,11 @@
 <div class="profile">
-  <div *ngIf="userProfile" class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+  <div class="profile-background"></div>
+  <div *ngIf="userProfile" class="profile-content flex align-items-center justify-content-center min-w-screen">
     <div class="flex w-full flex-column align-items-center justify-content-center">
       <div
       class="w-5"
         style="
+        margin: 5.5rem;
           border-radius: 56px;
           padding: 0.3rem;
           background: linear-gradient(
@@ -13,10 +15,7 @@
           );
         "
       >
-      <div
-      class="surface-card py-8 px-5 sm:px-8"
-      style="border-radius: 53px"
-      >
+      <div class="surface-card py-7 px-5 sm:px-8" style="border-radius: 53px" >
       <div class="text-center mb-5">
             <img src="assets/demo/images/activities/football.jpeg" alt="logo" class="mb-4 w-10rem flex-shrink-0" style="border-radius: 340%;">
             <div class="text-900 text-3xl font-medium mb-3">Welcome, {{userProfile.firstName}}</div>

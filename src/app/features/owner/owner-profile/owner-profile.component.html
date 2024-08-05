@@ -1,0 +1,116 @@
+<div *ngIf="companyForm" class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex w-full flex-column align-items-center justify-content-center">
+      <div style=" padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+        <div class="surface-card py-8 sm:px-8">
+          <div class="background-photo"></div>
+          <div class="text-center mb-5">
+            <img src="assets/demo/images/activities/football.jpeg" alt="logo" class="mb-4 w-10rem flex-shrink-0 logo-image" style="border-radius: 340%;">
+            <div class="text-900 text-3xl font-medium mb-3">Company Profile</div>
+          </div>
+          
+          <form [formGroup]="companyForm" (ngSubmit)="send()">
+            <div class="p-fluid">
+              <div class="grid justify-content-center">
+                <div class="col-12 md:col-6">
+                  <div class="field">
+                    <label for="companyName">Company Name</label>
+                    <input id="companyName" pInputText formControlName="companyName" placeholder="Company Name"/>
+                    <div *ngIf="companyForm.controls['companyName'].invalid && (companyForm.controls['companyName'].dirty || companyForm.controls['companyName'].touched)" class="p-error">
+                      Name Company is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 md:col-6">
+                  <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" pInputText type="email" formControlName="companyEmail" placeholder="Email"/>
+                    <div *ngIf="companyForm.controls['companyEmail'].invalid && (companyForm.controls['companyEmail'].dirty || companyForm.controls['companyEmail'].touched)" class="p-error">
+                      Email is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid justify-content-center">
+                <div class="col-12 md:col-8">
+                  <div class="field">
+                    <label for="address">Address</label>
+                    <input id="address" pInputTextarea rows="4" formControlName="detail" placeholder="Address"/>
+                    <div *ngIf="companyForm.controls['detail'].invalid && (companyForm.controls['detail'].dirty || companyForm.controls['detail'].touched)" class="p-error">
+                      Address is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 md:col-4">
+                  <div class="field">
+                    <label for="state">State</label>
+                    <p-dropdown id="state" formControlName="state" [options]="states" optionLabel="name" optionValue="id"></p-dropdown>
+                    <div *ngIf="companyForm.controls['state'].invalid && (companyForm.controls['state'].dirty || companyForm.controls['state'].touched)" class="p-error">
+                      State is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid justify-content-center">
+                <div class="col-12 md:col-3">
+                  <div class="field">
+                    <label for="phone">Phone</label>
+                    <p-inputNumber id="phone" mode="decimal" formControlName="companyPhone" [useGrouping]="false"></p-inputNumber>
+                    <div *ngIf="companyForm.controls['companyPhone'].invalid && (companyForm.controls['companyPhone'].dirty || companyForm.controls['companyPhone'].touched)" class="p-error">
+                      Phone is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 md:col-3">
+                  <div class="field">
+                    <label for="companyZip">Zip Code</label>
+                    <p-inputNumber id="companyZip" mode="decimal" formControlName="zip" [useGrouping]="false"></p-inputNumber>
+                  </div>
+                </div>
+                <div class="col-12 md:col-3">
+                  <div class="field">
+                    <label for="latitude">Latitude</label>
+                    <p-inputNumber id="latitude" mode="decimal" formControlName="latitude" [useGrouping]="false"></p-inputNumber>
+                  </div>
+                </div>
+                <div class="col-12 md:col-3">
+                  <div class="field">
+                    <label for="longitude">Longitude</label>
+                    <p-inputNumber id="longitude" mode="decimal" formControlName="longitude" [useGrouping]="false"></p-inputNumber>
+                  </div>
+                </div>
+              </div>
+              <div class="grid justify-content-center">
+                <div class="col-12 md:col-6">
+                  <div class="field">
+                    <label for="password">Password</label>
+                    <p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
+                    <div *ngIf="companyForm.controls['password'].invalid && (companyForm.controls['password'].dirty || companyForm.controls['password'].touched)" class="p-error">
+                      Password must be at least 6 characters long.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 md:col-6">
+                  <div class="field">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <p-password id="confirmPassword" formControlName="confirmPassword" [feedback]="false" [toggleMask]="true"></p-password>
+                    <div *ngIf="companyForm.controls['confirmPassword'].invalid && (companyForm.controls['confirmPassword'].dirty || companyForm.controls['confirmPassword'].touched)" class="p-error">
+                      Confirm password is required.
+                    </div>
+                    <div *ngIf="companyForm.get('confirmPassword')?.errors?.['passwordMatch']" class="p-error">
+                      Passwords do not match.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid justify-content-center">
+                <div class="col-12 md:col-4">
+                  <button type="submit" pButton label="Send" [disabled]="companyForm.invalid"></button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+</div>

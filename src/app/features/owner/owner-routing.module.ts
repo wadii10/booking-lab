@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'listStadium',
     loadComponent: () => import('./stadium-list/stadium-list.component').then( c => c.StadiumListComponent)
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./owner-profile/owner-profile.component').then( c => c.OwnerProfileComponent)
   }
 ];
 

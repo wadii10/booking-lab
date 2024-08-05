@@ -1,8 +1,14 @@
-.profile {
-  background-image: url("/src/assets/demo/images/galleria/backgroundSport.avif");
+.profile-background {
+  background-image: url("../../../../assets/demo/images/galleria/companyBackground.jpg");
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 
   width: 100%; 
   height: 100vh; 
+  position: relative;
+}
+
+.profile-content {
+  position: absolute;
+  margin-top: -52rem;
 }

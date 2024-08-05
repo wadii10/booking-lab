@@ -1,68 +1,251 @@
 <div class="container">
-
   <div class="xl:col-10 lg:col-10 p-0 md:p-3 mt-2 md:mt-0">
-    <div class="flex flex-column border-200 pricing-card border-2 transition-all p-3" style="border-radius:10px">
-        <p-galleria
+    <div
+      class="flex flex-column border-200 pricing-card border-2 transition-all p-3"
+      style="border-radius: 10px"
+    >
+      <p-galleria
         [value]="stadium && stadium.photos"
         [responsiveOptions]="responsiveOptions"
         [containerStyle]="{ 'max-width': '100%' }"
         [numVisible]="3"
       >
         <ng-template pTemplate="item" let-item>
-          <img [src]="item" style="width: 100%; height: 30rem; display: block" />
+          <img
+            [src]="item"
+            style="width: 100%; height: 30rem; display: block"
+          />
         </ng-template>
         <ng-template pTemplate="thumbnail" let-item>
           <div class="grid-nogutter justify-content-center">
-            <img [src]="item" style="width: 100%; height: 5rem; display: block" />
+            <img
+              [src]="item"
+              style="width: 100%; height: 5rem; display: block"
+            />
           </div>
         </ng-template>
       </p-galleria>
-       
-          <div class="grid my-5 gap-4">
-            <div class="flex flex-row gap-4 col-10">
-              <p-divider layout="vertical" />
-            <p-avatar size="xlarge" label="O" />
-            <div class="flex flex-column gap-2">
-              <span>
-                <span class="text-lg font-medium text-900">{{ stadium?.company?.companyName }}-</span>
-                <span class="text-lg font-medium text-900">{{stadium?.nameStadium}}</span>
-              </span>
-              <div class="font-medium text-secondary text-m">
-                {{ stadium?.activity?.name }}
-              </div>
+
+      <div class="grid my-5 gap-4">
+        <div class="flex flex-row gap-4 col-10">
+          <p-divider layout="vertical" />
+          <p-avatar size="xlarge" label="O" />
+          <div class="flex flex-column gap-2">
+            <span>
+              <span class="text-lg font-medium text-900"
+                >{{ stadium?.company?.companyName }}-</span
+              >
+              <span class="text-lg font-medium text-900">{{
+                stadium?.nameStadium
+              }}</span>
+            </span>
+            <div class="font-medium text-secondary text-m">
+              {{ stadium?.activity?.name }}
             </div>
-            </div>
-            <p-button class="col-1 ml-5" severity="success" [outlined]="true"><span class="text-xl  text-900">{{stadium?.price + "DT"}}</span></p-button>
           </div>
-        
-        <p-divider class="w-full bg-surface-200"></p-divider>
-        <ul class="my-3 list-none p-2 flex text-900 flex-row">
-            <li class="py-2">
-              <i class="pi pi-fw pi-map-marker text-xl text-cyan-500 mr-2"></i>
-              <span class="text-xl line-height-3 mr-2">{{stadium?.company?.state?.name}}</span>
-            </li>
+        </div>
+        <p-button class="col-1 ml-5" severity="success" [outlined]="true"
+          ><span class="text-xl text-900">{{
+            stadium?.price + "DT"
+          }}</span></p-button
+        >
+      </div>
+
+      <p-divider class="w-full bg-surface-200"></p-divider>
+      <ul class="my-3 list-none p-2 flex text-900 flex-row">
+        <li class="py-2">
+          <i class="pi pi-fw pi-map-marker text-xl text-cyan-500 mr-2"></i>
+          <span class="text-xl line-height-3 mr-2">{{
+            stadium?.company?.state?.name
+          }}</span>
+        </li>
         <p-divider layout="vertical" />
-            <li class="py-2">
-                <i class="pi pi-fw pi-clock text-xl text-cyan-500 mr-2" style="font-size: 2.5rem"></i>
-                <span class="text-xl line-height-3 mr-2">{{stadium?.duration + " " + "min"}}</span>
-            </li>
-            <p-divider layout="vertical" />
-            <li class="py-2">
-              <i class="pi pi-fw pi-users text-xl text-cyan-500 mr-2"></i>
-              <span class="text-xl line-height-3 mr-2">{{stadium?.capacity+" "+"participants"}}</span>
-            </li>
-            <p-divider layout="vertical" />
-            <li class="py-2">
-                <i class="pi pi-fw pi-hashtag text-xl text-cyan-500 mr-2"></i>
-                <span class="text-xl line-height-3 mr-2">{{stadium?.activity?.name}}</span>
-            </li>
-            <p-divider layout="vertical" />
-            <li class="py-2">
-              <i class="pi pi-lock-open text-cyan-500 mr-2"></i>
-              <span class="text-xl line-height-3 mr-2">{{stadium?.startTime+" "}}-{{" "+stadium?.endTime}}</span>
-            </li>
-        </ul>
-        
+        <li class="py-2">
+          <i
+            class="pi pi-fw pi-clock text-xl text-cyan-500 mr-2"
+            style="font-size: 2.5rem"
+          ></i>
+          <span class="text-xl line-height-3 mr-2">{{
+            stadium?.duration + " " + "min"
+          }}</span>
+        </li>
+        <p-divider layout="vertical" />
+        <li class="py-2">
+          <i class="pi pi-fw pi-users text-xl text-cyan-500 mr-2"></i>
+          <span class="text-xl line-height-3 mr-2">{{
+            stadium?.capacity + " " + "participants"
+          }}</span>
+        </li>
+        <p-divider layout="vertical" />
+        <li class="py-2">
+          <i class="pi pi-fw pi-hashtag text-xl text-cyan-500 mr-2"></i>
+          <span class="text-xl line-height-3 mr-2">{{
+            stadium?.activity?.name
+          }}</span>
+        </li>
+        <p-divider layout="vertical" />
+        <li class="py-2">
+          <i class="pi pi-lock-open text-cyan-500 mr-2"></i>
+          <span class="text-xl line-height-3 mr-2"
+            >{{ stadium?.startTime + " " }}-{{ " " + stadium?.endTime }}</span
+          >
+        </li>
+      </ul>
+      <p-divider />
+      <div class="card flex justify-content-center">
+        <p-stepper class="w-full">
+          <p-stepperPanel header="Header I">
+            <ng-template
+              pTemplate="content"
+              let-nextCallback="nextCallback"
+              let-index="index"
+            >
+              <div class="flex flex-column">
+                <div
+                  class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
+                >
+                  <div class="card">
+                    <div class="navigation-buttons">
+                      <button pButton label="Today" (click)="today()"></button>
+                    </div>
+                    <p-tabView
+                      [(activeIndex)]="activeIndex"
+                      [scrollable]="true"
+                    >
+                      <p-tabPanel *ngFor="let day of weekDays; let i = index">
+                        <ng-template pTemplate="header">
+                          <div class="tab-header">
+                            <div>{{ day.day }}</div>
+                            <div>{{ day.date | date : "dd-MM-yyyy" }}</div>
+                          </div>
+                        </ng-template>
+                        <div [ngClass]="{ highlight: isToday(day.date) }"></div>
+                        <br />
+                        <div class="flex flex-row flex-wrap gap-4">
+                          <div
+                            *ngFor="let slot of getSlotsForDay(day.date)"
+                            class="date-card"
+                          >
+                            <div class="date-info">
+                              <span class="flex flex-row gap-2">
+                                <!-- <p class="date">{{ slot.date | date:'dd/MM/yyyy' }}</p> -->
+                                <p class="time">
+                                  <i
+                                    class="pi pi-fw pi-clock text-xl text-cyan-500 mr-2"
+                                    style="font-size: 2.5rem"
+                                  ></i
+                                  >{{ slot.slotStart }}H - {{ slot.slotEnd }}H
+                                </p>
+                              </span>
+                              <br />
+                              <p class="details">
+                                Prix: {{ stadium?.price }} Dt
+                              </p>
+                            </div>
+                            <p-inputSwitch
+                              [(ngModel)]="slot.selected"
+                              (onChange)="onSlotToggle(slot, day.date)"
+                            ></p-inputSwitch>
+                            <!-- <input type="radio" name="slot" [value]="slot" (change)="onSlotSelect(slot)"> -->
+                          </div>
+                        </div>
+                      </p-tabPanel>
+                    </p-tabView>
+                  </div>
+                </div>
+              </div>
+              <div class="flex pt-4 justify-content-end">
+                <p-button
+                  label="Next"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  (onClick)="nextCallback.emit()"
+                  [disabled]="!isSlotSelected()"
+                />
+              </div>
+            </ng-template>
+          </p-stepperPanel>
+          <p-stepperPanel header="Header II">
+            <ng-template
+              pTemplate="content"
+              let-prevCallback="prevCallback"
+              let-nextCallback="nextCallback"
+              let-index="index"
+            >
+              <div class="flex flex-column">
+                <div
+                  class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
+                >
+                  <div class="card grid w-full">
+                    <div class="col-6">
+                      <app-reservation-summury
+                        [companyName]="stadium && stadium.company!.companyName"
+                        [stadiumName]="stadium?.nameStadium"
+                        [reservationDate]="selectedSlot.date"
+                        [reservationTime]="
+                          selectedSlot?.slotStart + ' - ' + selectedSlot?.slotEnd
+                        "
+                        [price]="stadium?.price"
+                      ></app-reservation-summury>
+                    </div>
+                    <div class="col-6">
+                      <ng-container *ngIf="isLoggedIn">
+                        <p-button
+                          label="Confirm Reservation"
+                          icon="pi pi-check"
+                          iconPos="right"
+                          (onClick)="confirmReservation()"
+                        />
+                      </ng-container>
+                      <ng-container *ngIf="!isLoggedIn">
+                        <p-button
+                          label="Login"
+                          icon="pi pi-user"
+                          iconPos="right"
+                          
+                        />
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex pt-4 justify-content-between">
+                <p-button
+                  label="Back"
+                  icon="pi pi-arrow-left"
+                  (onClick)="prevCallback.emit()"
+                />
+                <p-button
+                  label="Next"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  (onClick)="nextCallback.emit()"
+                />
+              </div>
+            </ng-template>
+          </p-stepperPanel>
+          <p-stepperPanel header="Header III">
+            <ng-template
+              pTemplate="content"
+              let-prevCallback="prevCallback"
+              let-index="index"
+            >
+              <div class="flex flex-column h-12rem">
+                <div
+                  class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
+                ></div>
+              </div>
+              <div class="flex pt-4 justify-content-start">
+                <p-button
+                  label="Back"
+                  icon="pi pi-arrow-left"
+                  (onClick)="prevCallback.emit()"
+                />
+              </div>
+            </ng-template>
+          </p-stepperPanel>
+        </p-stepper>
+      </div>
     </div>
-</div>
+  </div>
 </div>

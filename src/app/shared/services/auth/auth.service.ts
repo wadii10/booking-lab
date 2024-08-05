@@ -48,8 +48,11 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    const user = localStorage.getItem('authUser');
-    return (user && JSON.parse(user).id !== null) || false;
+    if (typeof window !== 'undefined' && localStorage) {
+      const user = localStorage.getItem('authUser');
+      return user ? JSON.parse(user).id !== null : false;
+    }
+    return false;
   }
 
   getUserEmail(): string | null {

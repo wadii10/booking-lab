@@ -33,4 +33,9 @@ export class StadiumService {
   getStadiumById(id:number):Observable<Stadium>{
     return (this.httpClient.get<Stadium>(`${environment.baseApi}/stadium/${id}`))
   }
+
+  //get time slots of stadium
+  getTimeSlots(id:number):Observable<any[]>{
+    return (this.httpClient.get<any[]>(`${environment.baseApi}/timeSlot/stadium/${id}`))
+  }
 }
