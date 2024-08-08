@@ -99,16 +99,7 @@ export class HeaderOwnerComponent {
       {
         label: 'Profile',
         icon: 'pi pi-fw pi-user',
-        items: [
-          {
-            label: 'Settings',
-            icon: 'pi pi-fw pi-cog',
-          },
-          {
-            label: 'Billing',
-            icon: 'pi pi-fw pi-file',
-          },
-        ],
+        command: () => this.router.navigate(['/owner/profile'])
       },
       {
         separator: true,

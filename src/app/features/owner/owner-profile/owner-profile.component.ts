@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
@@ -17,13 +23,13 @@ import { StateService } from '../../../shared/services/state/state.service';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { CompanyService } from '../../../shared/services/company/company.service';
 import { Company } from '../../../shared/models/Company';
+import { Address } from '../../../shared/models/Address';
 
 @Component({
   selector: 'app-owner-profile',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
     ReactiveFormsModule,
     AutoCompleteModule,
     ChipsModule,
@@ -38,51 +44,53 @@ import { Company } from '../../../shared/models/Company';
     PasswordModule,
   ],
   templateUrl: './owner-profile.component.html',
-  styleUrl: './owner-profile.component.scss'
+  styleUrl: './owner-profile.component.scss',
 })
 export class OwnerProfileComponent {
+
   companyForm!: FormGroup;
 
   states!: State[];
+  address?: Address;
 
   companyProfile!: Company;
 
-  constructor(private fb: FormBuilder, private stateService:StateService, private authService:AuthService, private companyService: CompanyService) {}
+  constructor(
+    private fb: FormBuilder,
+    private stateService: StateService,
+    private authService: AuthService,
+    private companyService: CompanyService
+  ) {}
 
   ngOnInit(): void {
-    this.getStates();
     this.getProfile();
-    this.initForm();
+    this.getStates();
   }
 
-  initForm() :void {
-    this.companyForm = this.fb.group({
-      companyName: ['', Validators.required],
-      companyEmail: ['', [Validators.required, Validators.email]],
-      detail: ['', Validators.required],
-      state: ['', Validators.required],
-      companyPhone: ['', Validators.required],
-      zip: [''],
-      latitude: [''],
-      longitude: [''],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
+  initForm(company:Company): void {
+    this.companyForm = new FormGroup({
+      companyName: new FormControl(company.companyName, [Validators.required]),
+      companyEmail: new FormControl(company.companyEmail, [Validators.required, Validators.email]),
+      detail: new FormControl(company.address?.detail || '', [Validators.required]),
+      zip: new FormControl(company.address?.zip || 0),
+      latitude: new FormControl(company.address?.latitude || 0),
+      longitude: new FormControl(company.address?.longitude || 0),
+      companyPhone: new FormControl (company.companyPhone, [Validators.required]),
+      state: new FormControl(company.state?.id, [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      confirmPassword: new FormControl('', [Validators.required]),
     });
   }
 
-  // passwordMatchValidator(form: FormGroup) {
-  //   return form.get('password').value === form.get('confirmPassword').value
-  //     ? null : { 'passwordMatch': true };
-  // }
-
+  
   send() {
     if (this.companyForm.valid) {
       // Send the form data
     }
   }
 
-   // get all state
-   getStates() {
+  // get all state
+  getStates() {
     this.stateService.allState().subscribe({
       next: (data: any) => {
         this.states = data;
@@ -96,15 +104,17 @@ export class OwnerProfileComponent {
   getProfile() {
     const email = this.authService.getUserEmail();
     this.companyService.getCompanyProfile(email!).subscribe({
-     next : (res) => {
-       this.companyProfile = res;
-       console.log(this.companyProfile);
-       this.companyForm.patchValue(this.companyProfile);
-     },
-     error : (err) => {
-       
-     }
-   })
- }
+      next: (res) => {
+        this.companyProfile = res;
+        this.initForm(this.companyProfile!);
+      },
+      error: (err) => {},
+    });
+  }
 
 }
+
+// passwordMatchValidator(form: FormGroup) {
+//   return form.get('password').value === form.get('confirmPassword').value
+//     ? null : { 'passwordMatch': true };
+// }

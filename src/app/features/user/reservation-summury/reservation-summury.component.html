@@ -3,13 +3,17 @@
       <h3>Votre réservation</h3>
     </div>
     <div class="reservation-details">
-      <p><strong>Espace de la réservation:</strong>{{companyName+" "}}-{{" "+stadiumName }}</p>
-      <p><strong>Date de réservation:</strong> {{ reservationDate | date:'dd-MM-yyyy' }}</p>
-      <p><strong>Heure de réservation:</strong> {{ reservationTime }}</p>
+      <p><strong>Espace de la réservation:</strong></p>
+      <p class="flex flex-row gap-2"> <i class="pi pi-flag-fill" style="font-size: 1.5rem; color: green;"></i> {{companyName+" "}}-{{" "+stadiumName }}</p>
+      <p><strong>Date de réservation:</strong></p>
+      <p class="flex flex-row gap-2"><i class="pi pi-calendar" style="font-size: 1.5rem; color: green;"></i> {{ reservationDate | date:'dd-MM-yyyy' }}</p>
+      <p><strong>Heure de réservation:</strong></p>
+      <p class="flex flex-row gap-2"><i class="pi pi-stopwatch" style="font-size: 1.5rem; color: green;"></i>{{ reservationTime }}</p>
     </div>
     <div class="price-details">
       <h4>Détails du prix</h4>
-      <p><strong>Prix de la réservation:</strong> {{ price }} DT</p>
+      <p><strong>Prix de la réservation:</strong></p>
+      <p class="flex flex-row gap-2"><i class="pi pi-money-bill" style="font-size: 1.5rem; color: green;"></i>{{ price }} DT</p>
       <!-- <p><strong>Frais de la transaction:</strong> {{ transactionFee }} DT</p>
       <p><strong>Total:</strong> {{ totalPrice }} DT</p> -->
     </div>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="cont">
   <div class="xl:col-10 lg:col-10 p-0 md:p-3 mt-2 md:mt-0">
     <div
       class="flex flex-column border-200 pricing-card border-2 transition-all p-3"
@@ -52,6 +52,7 @@
       </div>
 
       <p-divider class="w-full bg-surface-200"></p-divider>
+
       <ul class="my-3 list-none p-2 flex text-900 flex-row">
         <li class="py-2">
           <i class="pi pi-fw pi-map-marker text-xl text-cyan-500 mr-2"></i>
@@ -91,10 +92,12 @@
           >
         </li>
       </ul>
+
       <p-divider />
+
       <div class="card flex justify-content-center">
-        <p-stepper class="w-full">
-          <p-stepperPanel header="Header I">
+        <p-stepper [linear]="true" class="w-full">
+          <p-stepperPanel header="Choose a slot">
             <ng-template
               pTemplate="content"
               let-nextCallback="nextCallback"
@@ -112,9 +115,15 @@
                       [(activeIndex)]="activeIndex"
                       [scrollable]="true"
                     >
-                      <p-tabPanel *ngFor="let day of weekDays; let i = index">
+                      <p-tabPanel
+                        *ngFor="let day of weekDays; let i = index"
+                        [disabled]="isDisabled(day.date)"
+                      >
                         <ng-template pTemplate="header">
-                          <div class="tab-header">
+                          <div
+                            class="tab-header"
+                            (click)="getTimeSlotsByStadium(day.date)"
+                          >
                             <div>{{ day.day }}</div>
                             <div>{{ day.date | date : "dd-MM-yyyy" }}</div>
                           </div>
@@ -123,8 +132,9 @@
                         <br />
                         <div class="flex flex-row flex-wrap gap-4">
                           <div
-                            *ngFor="let slot of getSlotsForDay(day.date)"
+                            *ngFor="let slot of day.timeSlots"
                             class="date-card"
+                            [class.disabled]="slot.disabled"
                           >
                             <div class="date-info">
                               <span class="flex flex-row gap-2">
@@ -145,6 +155,7 @@
                             <p-inputSwitch
                               [(ngModel)]="slot.selected"
                               (onChange)="onSlotToggle(slot, day.date)"
+                              [disabled]="slot.disabled"
                             ></p-inputSwitch>
                             <!-- <input type="radio" name="slot" [value]="slot" (change)="onSlotSelect(slot)"> -->
                           </div>
@@ -165,7 +176,7 @@
               </div>
             </ng-template>
           </p-stepperPanel>
-          <p-stepperPanel header="Header II">
+          <p-stepperPanel header="Booking confirmation">
             <ng-template
               pTemplate="content"
               let-prevCallback="prevCallback"
@@ -177,65 +188,104 @@
                   class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
                 >
                   <div class="card grid w-full">
-                    <div class="col-6">
+                    <div class="col-5">
                       <app-reservation-summury
                         [companyName]="stadium && stadium.company!.companyName"
                         [stadiumName]="stadium?.nameStadium"
                         [reservationDate]="selectedSlot.date"
                         [reservationTime]="
-                          selectedSlot?.slotStart + ' - ' + selectedSlot?.slotEnd
+                          selectedSlot?.slotStart +
+                          ' - ' +
+                          selectedSlot?.slotEnd
                         "
                         [price]="stadium?.price"
                       ></app-reservation-summury>
                     </div>
+                    <div class="col-1">
+                      <p-divider layout="vertical"></p-divider>
+                    </div>
                     <div class="col-6">
                       <ng-container *ngIf="isLoggedIn">
+                        <p-toast />
+                        <p-confirmDialog />
                         <p-button
+                          (onClick)="confirmBooking($event)"
                           label="Confirm Reservation"
-                          icon="pi pi-check"
-                          iconPos="right"
-                          (onClick)="confirmReservation()"
+                          severity="success"
+                          [outlined]="true"
                         />
                       </ng-container>
                       <ng-container *ngIf="!isLoggedIn">
-                        <p-button
-                          label="Login"
-                          icon="pi pi-user"
-                          iconPos="right"
-                          
-                        />
+                        <div class="card flex flex-column align-items-center p-6">
+                          <p-button icon="pi pi-google" label="Continue with Google" [rounded]="true" severity="secondary" />
+                          <p-divider [align]="'center'" type="dotted"><b>OR</b></p-divider>
+                          <form [formGroup]="loginForm" (ngSubmit)="login()">
+                            <div class="p-fluid">
+                              <div class="field">
+                                <label for="email">Email</label>
+                                <input
+                                  id="email"
+                                  type="email"
+                                  pInputText
+                                  formControlName="email"
+                                />
+                                <div
+                                  *ngIf="
+                                    loginForm.controls['email'].invalid &&
+                                    (loginForm.controls['email'].dirty ||
+                                      loginForm.controls['email'].touched)
+                                  "
+                                  class="p-error"
+                                >
+                                  Enter a valid email.
+                                </div>
+                              </div>
+
+                              <div class="field">
+                                <label for="password">Password</label>
+                                <p-password
+                                  id="password"
+                                  formControlName="password"
+                                  [toggleMask]="true"
+                                  [feedback]="false"
+                                ></p-password>
+                                <div
+                                  *ngIf="
+                                    loginForm.controls['password'].invalid &&
+                                    (loginForm.controls['password'].dirty ||
+                                      loginForm.controls['password'].touched)
+                                  "
+                                  class="p-error"
+                                >
+                                  Password must be at least 6 characters long.
+                                </div>
+                              </div>
+
+                              <button
+                                type="submit"
+                                pButton
+                                label="Login"
+                                [disabled]="loginForm.invalid"
+                              ></button>
+
+                              <div class="field text-center p-4">
+                                Don't have an account?
+                                <a href="/register">Sign up</a>
+                              </div>
+                            </div>
+                          </form>
+                          <div class="field md:col-12">
+                            <p *ngIf="errorMessage" class="p-error">
+                              {{ errorMessage }}
+                            </p>
+                          </div>
+                        </div>
                       </ng-container>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="flex pt-4 justify-content-between">
-                <p-button
-                  label="Back"
-                  icon="pi pi-arrow-left"
-                  (onClick)="prevCallback.emit()"
-                />
-                <p-button
-                  label="Next"
-                  icon="pi pi-arrow-right"
-                  iconPos="right"
-                  (onClick)="nextCallback.emit()"
-                />
-              </div>
-            </ng-template>
-          </p-stepperPanel>
-          <p-stepperPanel header="Header III">
-            <ng-template
-              pTemplate="content"
-              let-prevCallback="prevCallback"
-              let-index="index"
-            >
-              <div class="flex flex-column h-12rem">
-                <div
-                  class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
-                ></div>
-              </div>
-              <div class="flex pt-4 justify-content-start">
                 <p-button
                   label="Back"
                   icon="pi pi-arrow-left"

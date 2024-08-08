@@ -1,14 +1,14 @@
-<div *ngIf="companyForm" class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
     <div class="flex w-full flex-column align-items-center justify-content-center">
       <div style=" padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
         <div class="surface-card py-8 sm:px-8">
           <div class="background-photo"></div>
           <div class="text-center mb-5">
             <img src="assets/demo/images/activities/football.jpeg" alt="logo" class="mb-4 w-10rem flex-shrink-0 logo-image" style="border-radius: 340%;">
-            <div class="text-900 text-3xl font-medium mb-3">Company Profile</div>
+            <div class="text-900 text-3xl font-medium mb-3">{{companyProfile && companyProfile.companyName}}</div>
           </div>
           
-          <form [formGroup]="companyForm" (ngSubmit)="send()">
+          <form *ngIf="companyForm" [formGroup]="companyForm" (ngSubmit)="send()">
             <div class="p-fluid">
               <div class="grid justify-content-center">
                 <div class="col-12 md:col-6">
@@ -34,7 +34,7 @@
                 <div class="col-12 md:col-8">
                   <div class="field">
                     <label for="address">Address</label>
-                    <input id="address" pInputTextarea rows="4" formControlName="detail" placeholder="Address"/>
+                    <input  id="address" pInputTextarea rows="4" formControlName="detail" placeholder="Address"/>
                     <div *ngIf="companyForm.controls['detail'].invalid && (companyForm.controls['detail'].dirty || companyForm.controls['detail'].touched)" class="p-error">
                       Address is required.
                     </div>

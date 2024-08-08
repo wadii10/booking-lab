@@ -121,7 +121,6 @@ export class SearchResultsComponent implements OnInit, AfterViewInit {
     this.searchService.searchByCriteria(this.searchReq).subscribe({
       next: (data: any) => {
         this.searchResults = data;
-        this.images = this.searchResults?.map((el) => el.photos);
         console.log(this.searchResults);
       },
       error: (err) => {
@@ -158,6 +157,7 @@ export class SearchResultsComponent implements OnInit, AfterViewInit {
       },
     });
   }
+  
   // get all activity
   getActivities() {
     this.activityService.allActivity().subscribe({

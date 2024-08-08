@@ -5,6 +5,7 @@ import { HomeComponent } from './shared/components/home/home.component';
 import { HomeAdminComponent } from './features/admin/home-admin/home-admin.component';
 import { HomeOwnerComponent } from './features/owner/home-owner/home-owner.component';
 import { authGuard } from './shared/services/auth/auth.guard';
+import { ReservationComponent } from './features/user/reservation/reservation.component';
 
 export const routes: Routes = [
   { path: 'login', pathMatch: 'full', component: LoginComponent },
@@ -43,6 +44,9 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { expectedRole: 'OWNER' },
   },
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: '**', pathMatch: 'full', redirectTo: 'home' },
+  {
+    path: 'reservation', component: ReservationComponent
+  },
+  { path: '', pathMatch: 'full', redirectTo: '' },
+  { path: '**', pathMatch: 'full', redirectTo: '' },
 ];

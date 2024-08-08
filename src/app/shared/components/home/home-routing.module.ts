@@ -27,6 +27,12 @@ const routes: Routes = [
     data: { expectedRole: 'USER' }
   },
   {
+    path: 'user/reservationList',
+    loadComponent: () => import('../../../features/user/list-reservation/list-reservation.component').then( c => c.ListReservationComponent),
+    canActivate:[authGuard],
+    data: { expectedRole: 'USER'}
+  },
+  {
     path: 'search-detail/:id',
     loadComponent: () => import('../../../features/user/search-detail/search-detail.component').then( c => c.SearchDetailComponent)
   },

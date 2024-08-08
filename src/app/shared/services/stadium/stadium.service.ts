@@ -35,7 +35,7 @@ export class StadiumService {
   }
 
   //get time slots of stadium
-  getTimeSlots(id:number):Observable<any[]>{
-    return (this.httpClient.get<any[]>(`${environment.baseApi}/timeSlot/stadium/${id}`))
+  getTimeSlots(id:number, date: any):Observable<any[]>{
+    return (this.httpClient.get<any[]>(`${environment.baseApi}/timeSlot/stadium/${id}?date=${date}`))
   }
 }

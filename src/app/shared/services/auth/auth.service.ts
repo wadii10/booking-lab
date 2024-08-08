@@ -81,7 +81,7 @@ export class AuthService {
     if (role) {
       switch (role) {
         case 'OWNER':
-          this.router.navigate(['/owner']);
+          this.router.navigate(['/owner/profile']);
           break;
         case 'ADMIN':
           this.router.navigate(['/admin']);

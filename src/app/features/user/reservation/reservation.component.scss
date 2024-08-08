@@ -1,0 +1,1196 @@
+//sahar job
+.p-t-31 p-b-9{
+  margin-top: 100px;
+}
+
+
+
+/* Étape 2 */
+.step-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Ensures both sections have the same height */
+  gap: 20px; /* Space between the two sections */
+  padding: 20px; /* Add padding if needed */
+  margin-bottom: 20px;
+}
+
+
+
+
+.details-section {
+  padding: 20px;
+  color: #333; /* Couleur du texte du titre */
+  flex: 1;
+  background: #fff;
+
+  border-radius: 8px; /* Coins arrondis pour un effet doux */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour ajouter de la profondeur */
+  margin: 20px 0;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+
+}
+
+
+
+.details-card {
+  background-color: #fff; /* Couleur de fond pour la carte des détails */
+  border: 1px solid #ddd; /* Bordure légère */
+  border-radius: 5px; /* Coins arrondis pour la carte */
+  padding: 15px; /* Espacement interne */
+}
+
+.details-card p {
+  font-size: 1rem; /* Taille du texte */
+  color: #007bff; /* Couleur bleue pour les détails */
+  margin-bottom: 10px; /* Espacement sous chaque paragraphe */
+}
+
+.details-card p strong {
+  color: #333; /* Couleur du texte pour les labels (par exemple, Date de réservation) */
+}
+
+
+
+/* Login section style */
+.login-section {
+  flex: 1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Conteneur de connexion */
+.container-login {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 60px 55px 33px 55px;
+}
+
+/* Contenu du formulaire de connexion */
+.wrap-login {
+  width: 100%;
+}
+
+/* Titre du formulaire */
+.login-form-title {
+  font-family: Poppins-Bold;
+  color: #333;
+  font-size: 25px;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: -60px;
+  margin-bottom: 20px;
+}
+.small-text {
+  font-size: 12px !important;
+  color: #363835; /* Vous pouvez également ajuster la couleur si nécessaire */
+}
+
+
+.small-text-ou {
+  font-size: 12px !important;
+  color: #363835; /* Vous pouvez également ajuster la couleur si nécessaire */
+  text-align: center; /* Centre le texte horizontalement */
+  display: block; /* Assure que le texte est considéré comme un bloc */
+  margin: 0 auto; /* Centre le texte dans son conteneur */
+}
+/* Formulaire de connexion */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styles des inputs */
+.wrap-input {
+  position: relative;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.input {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #333;
+  line-height: 0.2;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px 15px;
+}
+
+/* Effet de focus sur input */
+.focus-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #555;
+  border-radius: 5px;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+/* Bouton de connexion */
+.container-login-form-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 17px;
+}
+.wrap-input.validate-input {
+  position: relative;
+  width: 100%;
+  margin-bottom: -10px; /* Réduisez cette valeur pour diminuer l'espacement */
+}
+
+.p-t-13.p-b-9 {
+  margin-bottom: 10px; /* Réduisez cette valeur si nécessaire pour diminuer l'espacement */
+}
+.login-form-btn {
+  font-family: Poppins-Bold;
+  font-size: 15px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+  margin-top: -10px;
+}
+
+.login-form-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Liens supplémentaires */
+.txt2 {
+  font-family: Poppins-Regular;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.txt2:hover {
+  text-decoration: underline;
+}
+
+.bo1 {
+  border-bottom: 1px solid #007bff;
+  padding-bottom: 2px;
+}
+
+/* Bouton Google */
+.btn-google {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #333;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.4s ease;
+    margin-bottom: 20px; /* Ajustez cette valeur pour augmenter l'espacement */
+
+}
+
+.btn-google img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.btn-google:hover {
+  background-color: #e0e0e0;
+}
+
+/* Style pour le formulaire d'inscription ou de connexion */
+.account-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+/* Styling for account form */
+.account-form {
+  width: 100%; /* Ensures the form fills the container */
+}
+
+/* Remove the background image from the form container */
+.container-login100 {
+  background-image: none; /* Remove background image */
+  background: #f7f7f7; /* Background color */
+}
+
+/* Styling for the form within the login section */
+.wrap-login100 {
+  padding: 20px; /* Adjust padding */
+}
+
+/* Align title and fields in the form */
+.login100-form-title {
+  font-size: 24px; /* Adjust title size */
+  margin-bottom: 20px;
+}
+
+.wrap-input100 {
+  margin-bottom: 15px;
+}
+
+.input100 {
+  width: 100%;
+}
+
+.container-login100-form-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.login100-form-btn {
+  width: 100%;
+}
+
+/* Limiter Container */
+.limiter {
+  width: 100%;
+  padding: 15px;
+  background: #f7f7f7;
+}
+
+/* Container for background image */
+.container-login100 {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Main wrapper for the login form */
+.wrap-login100 {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 60px 55px 33px 55px;
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Title of the login form */
+.login100-form-title {
+  font-family: Poppins-Bold;
+  color: #333;
+  font-size: 32px;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 53px;
+}
+
+/* Form input container */
+.wrap-input100 {
+  position: relative;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+/* Input styles */
+.input100 {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #333;
+  line-height: 1.2;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px 15px;
+}
+
+/* Focus effect on input */
+.focus-input100 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #555;
+  border-radius: 5px;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+/* Button styles */
+.container-login100-form-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 17px;
+}
+
+.login100-form-btn {
+  font-family: Poppins-Bold;
+  font-size: 15px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+}
+
+.login100-form-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Additional links styles */
+.txt2 {
+  font-family: Poppins-Regular;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.txt2:hover {
+  text-decoration: underline;
+}
+
+.bo1 {
+  border-bottom: 1px solid #007bff;
+  padding-bottom: 2px;
+}
+
+/* Button Google */
+.btn-google {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #333;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.4s ease;
+}
+
+.btn-google img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.btn-google:hover {
+  background-color: #e0e0e0;
+}
+
+/* Forgot link */
+.txt2.m-l-5 {
+  margin-left: 5px;
+}
+
+
+
+/* Style pour le conteneur principal */
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+
+/* Assurez-vous que les champs ne sont pas cachés ou désactivés */
+input[disabled] {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+/* Style pour les sections des détails et de connexion */
+.details-and-login {
+  display: flex;
+  width: 100%;
+}
+
+/* Style pour chaque section (détails et connexion) */
+.details-section, .login-section {
+  flex: 1;
+  margin-top: 50px;
+}
+
+/* Style pour le bouton de connexion */
+.login-button {
+  background-color: blue; /* Couleur de fond bleue */
+  color: white; /* Couleur du texte blanche */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Autres styles */
+.additional-links {
+  margin-top: 10px;
+}
+
+.additional-links a {
+  color: blue;
+  text-decoration: none;
+}
+
+.additional-links a:hover {
+  text-decoration: underline;
+}
+
+
+/* Style pour le bouton de connexion */
+.login-button {
+  background-color: #007bff; /* Couleur bleue */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+/* Style pour les liens supplémentaires */
+.additional-links {
+  margin-top: 10px;
+}
+
+.additional-links a {
+  color: #007bff; /* Couleur bleue */
+  text-decoration: none;
+}
+
+.additional-links a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+.steps-container {
+  padding: 20px;
+}
+
+.steps-titles {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+}
+
+.step-title {
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+  margin-top: 80px;
+  margin-left:100px ;
+}
+
+
+.step2-title {
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+  margin-top: 80px;
+  margin-right: 100px;
+}
+
+.step-title.active {
+  color: #007bff; /* Couleur active pour l'étape en cours */
+}
+.step2-title.active {
+  color: #007bff; /* Couleur active pour l'étape en cours */
+}
+
+
+.details-card, .account-form {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Styles pour la deuxième étape de la réservation */
+.reservation-details {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  margin-top: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.details-card {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.details-card p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.details-card strong {
+  font-weight: bold;
+}
+
+.account-form {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.account-form h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+.account-form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.account-form input[type="email"],
+.account-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.account-form button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.account-form button:hover {
+  background-color: #0056b3;
+}
+
+.account-form p {
+  font-size: 16px;
+  color: #333;
+}
+
+
+.no-availability-message {
+  text-align: center;
+  color: #543030; /* Couleur rouge pour le message d'erreur */
+  font-size: 16px;
+  padding: 100px;
+  margin-top: 20px;
+  margin-left: 200px;
+}
+.days-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.days-container div {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.days-container .today {
+  background-color: #f0f8ff; /* Couleur de fond pour aujourd'hui */
+}
+
+.days-container .selected {
+  background-color: #007bff; /* Couleur bleue pour le jour sélectionné */
+  color: #ffffff; /* Texte en blanc pour contraster avec le fond bleu */
+  border: 1px solid #0056b3; /* Bordure bleue pour le jour sélectionné */
+}
+
+.days-container .selected:hover {
+  background-color: #0056b3; /* Couleur bleue foncée au survol */
+}
+
+
+
+
+
+.days-container .selected:hover {
+  background-color: #0056b3; /* Couleur bleue foncée au survol */
+}
+
+
+.days-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.days-container div {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #0a1116;
+  color: white;
+  border-radius: 5px;
+}
+
+
+/* Styles pour le jour actuel */
+.days-container .today {
+  background-color: #e0f7fa; /* Couleur de fond pour aujourd'hui */
+  color: #00695c; /* Couleur du texte pour le jour actuel */
+}
+.today {
+  border: 2px solid #33f965;
+}
+
+
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; // Prend la hauteur complète de la fenêtre
+  padding: 20px;
+}
+.decorative-line {
+  height: 4px; /* Épaisseur de la ligne */
+  background-color: black; /* Couleur de la ligne */
+  width: 80%; /* Largeur de la ligne */
+  margin: 0 auto; /* Centre horizontalement avec marges automatiques */
+  position: fixed; /* Fixe la ligne en haut de la page */
+  top: 80px; /* Aligne la ligne à 80 pixels du sommet de la page */
+  left: 0; /* Aligne la ligne au bord gauche de la page */
+  right: 0; /* Aligne la ligne au bord droit de la page */
+  z-index: 1000; /* Assure que la ligne est au-dessus des autres éléments */
+}
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  margin: 20px;
+  top: 100px; /* Positionne le calendrier à 20 pixels du sommet de la carte */
+  left: 100px;
+  z-index: 1000; /* Assure que le calendrier est au-dessus des autres éléments de la carte */
+
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.arrow-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+h3 {
+  margin: 0;
+}
+
+.today-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.today-content {
+  display: flex;
+  align-items: center;
+}
+
+.today-indicator p {
+  margin: 0 10px; /* Espacement entre les lignes verticales et le texte */
+}
+
+.vertical-line {
+  width: 1px; /* Épaisseur des lignes verticales */
+  height: 20px; /* Hauteur des lignes verticales */
+  background-color: black; /* Couleur des lignes */
+}
+
+
+
+
+
+.main-card {
+  width: 100%; // Largeur de 80% de la page
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dates-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.date-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: calc(33.333% - 20px); // Trois cartes par ligne avec un espace entre elles
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.date-info {
+  margin-bottom: 15px;
+}
+
+.date {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.details {
+  font-size: 1em;
+  color: #555;
+}
+/* CSS for Dark Theme Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333; /* Background color when off */
+  border-radius: 34px;
+  transition: background-color 0.3s;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #fff; /* Slider color */
+  transition: transform 0.3s;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #007bff; /* Background color when on */
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-slider {
+  transform: translateX(26px);
+}
+
+
+
+/* CSS */
+.dark-theme-button {
+  position: relative;
+  background-color: #333; /* Couleur de fond sombre */
+  color: #fff; /* Couleur du texte */
+  border: 2px solid #444; /* Bordure légèrement plus claire */
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s, border-color 0.3s;
+  outline: none;
+}
+
+.dark-theme-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: #007bff; /* Couleur d'accentuation au clic */
+  transition: transform 0.3s;
+  z-index: 0;
+  transform: translateX(-100%);
+}
+
+.dark-theme-button:hover::before,
+.dark-theme-button:active::before {
+  transform: translateX(0);
+}
+
+.dark-theme-button:hover,
+.dark-theme-button:active {
+  background-color: #444; /* Couleur de fond sombre en survol ou clic */
+  border-color: #007bff; /* Couleur de bordure au survol */
+}
+
+.dark-theme-button:hover {
+  color: #fff; /* Couleur du texte lors du survol */
+}
+
+/* CSS */
+.slide-button {
+  position: relative;
+  background-color: #ccc; /* Couleur de fond initiale (gris) */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s;
+  outline: none;
+}
+
+.slide-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: #28a745; /* Couleur de fond au clic (vert) */
+  transition: transform 0.3s;
+  z-index: 0;
+  transform: translateX(-100%);
+}
+
+.slide-button:hover::before,
+.slide-button:active::before {
+  transform: translateX(0);
+}
+
+.slide-button:hover,
+.slide-button:active {
+  color: white;
+}
+
+.slide-button:hover::before {
+  transform: translateX(-100%);
+}
+
+.reserve-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.reserve-button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+.days-container {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.days-container > div {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+}
+
+.days-container > div:last-child {
+  border-right: none;
+}
+
+.selected {
+  background-color: green;
+  color: white;
+}
+
+.today {
+  background-color: lightgreen;
+  color: black;
+}
+
+
+.days-rectangle {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.days-header, .dates-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.day-column, .date-column {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.day-column:last-child, .date-column:last-child {
+  border-right: none;
+}
+.title{
+  margin-left: -780px;
+  margin-top: -30px;
+}
+.toggle-switch {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-checkbox {
+  display: none;
+}
+
+.toggle-label {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-slider {
+  background-color: #2196F3;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-slider:before {
+  transform: translateX(26px);
+}
+
+
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.reservation-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-card, .account-form {
+  width: 80%;
+  max-width: 600px;
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.details-card p {
+  margin: 5px 0;
+}
+
+.account-form h3 {
+  margin-bottom: 15px;
+}
+
+.account-form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.account-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.account-form button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.account-form button:hover {
+  background-color: #0056b3;
+}
